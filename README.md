@@ -52,7 +52,7 @@ cmake -DCMAKE_C_COMPILER=gcc-9 \
 -DCMAKE_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
 make -j4
 ```
-quite intimidating i know but that's the best way i know 
+Quite intimidating I know but that's the best way I have for you for now. 
 
 I haven't tested compiling it on other Operating Systems such as Windows or Mac OS X
 but it should work.
