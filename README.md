@@ -6,7 +6,9 @@ few events such as removal or addition of a node, chat messages and time change.
 
 About 80-90 % of the credit of this project goes to celeron55
 and other authors and contributors of Minetest(engine).
-I take the rest remaining credit!
+Some more credit(9.9% i would say) goes to farooqkz the creator of mtbotter, I take credit of updating README.md
+for correct compiling as of the ways i know how to compile it. And i have made more example bots so check out the examples/
+folder for that.
 
 To code a bot in C++(if you want to code your bot in other languages, see Other
 languages section), see CREATE-BOT.md
