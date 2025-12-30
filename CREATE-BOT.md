@@ -1,5 +1,4 @@
 # Creating a Minetest bot with MtBotter
-
 In this article, I suppose you are using C++. For other languages see other languages
 section in README.md
 
