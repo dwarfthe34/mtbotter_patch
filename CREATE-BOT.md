@@ -24,7 +24,7 @@ class MtBotter {
     public:
         MtBotter(const char* botname,             //The name of your bot.
                  const std::string &password,     //The password for your bot.
-                 const std::string &address_name, //The name of your/the server (you can just put that IP of it again if it doesn't have a name)
+                 const std::string &address_name, //The name of your/the server (you can just put the IP again)
                  const std::string hostname,      //The IP of your/the server
                  const unsigned short port,       //The port of your/the server
                  bool ipv6);                      //If the server is IPv6
