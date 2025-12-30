@@ -50,7 +50,6 @@ cmake --version
 cmake -DCMAKE_C_COMPILER=gcc-9 \
       -DCMAKE_CXX_COMPILER=g++-9 \
       -DCMAKE_CXX_STANDARD=20 ..
--DCMAKE_INCLUDE_PATH=/usr/include/somelib \
 -DCMAKE_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
 make -j4
 ```
