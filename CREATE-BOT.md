@@ -22,12 +22,12 @@ class MtBotter {
         float m_hit;
         PointedThing getPointedThing();
     public:
-        MtBotter(const char* botname,
-                 const std::string &password,
-                 const std::string &address_name,
-                 const std::string hostname,
-                 const unsigned short port,
-                 bool ipv6);
+        MtBotter(const char* botname,             //The name of your bot.
+                 const std::string &password,     //The password for your bot.
+                 const std::string &address_name, //The name of your/the server (you can just put that IP of it again if it doesn't have a name)
+                 const std::string hostname,      //The IP of your/the server
+                 const unsigned short port,       //The port of your/the server
+                 bool ipv6);                      //If the server is IPv6
         ~MtBotter();
         bool connect();
         void start();
