@@ -28,8 +28,9 @@ I haven't tested compiling it on other Operating Systems such as Windows or Mac 
 but it should work.
 ## Run the bot
 From my testing the best method of running you bot is stated here 
-``` g++ -std=c++17 -I./src -I./lib/jsoncpp -I./lib/lua/src \
-    mybot.cpp -L./lib -lmtbotter -ljsoncpp -llua -o mybot
+``` 
+g++ -std=c++17 -I./src -I./lib/jsoncpp -I./lib/lua/src \
+	mybot.cpp -L./lib -lmtbotter -ljsoncpp -llua -o mybot
 ```
 The file "mybot.cpp" is whatever you named your bot file and the name after "-o" (in my case "mybot") is the name of your bot's binary file. 
 The binary file is the one you execute. To do that in my case would be "./mybot" but remember it does not need to be named "mybot".
