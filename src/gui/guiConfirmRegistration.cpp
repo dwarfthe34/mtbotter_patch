@@ -19,16 +19,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include "guiConfirmRegistration.h"
-#include "client/client.h"
+#include "../client/client.h"
 #include "guiButton.h"
-#include <IGUICheckBox.h>
-#include <IGUIButton.h>
-#include <IGUIStaticText.h>
-#include <IGUIFont.h>
+#include "../../irrlicht/include/IGUICheckBox.h"
+#include "../../irrlicht/include/IGUIButton.h"
+#include "../../irrlicht/include/IGUIStaticText.h"
+#include "../../irrlicht/include/IGUIFont.h"
 #include "intlGUIEditBox.h"
-#include "porting.h"
+#include "../porting.h"
 
-#include "gettext.h"
+#include "../gettext.h"
 
 // Continuing from guiPasswordChange.cpp
 const int ID_confirmPassword = 262;

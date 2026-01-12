@@ -7,11 +7,11 @@
 #include "guiSkin.h"
 #ifdef _IRR_COMPILE_WITH_GUI_
 
-#include "IGUIFont.h"
-#include "IGUISpriteBank.h"
-#include "IGUIElement.h"
-#include "IVideoDriver.h"
-#include "IAttributes.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../../irrlicht/include/IGUISpriteBank.h"
+#include "../../irrlicht/include/IGUIElement.h"
+#include "../../irrlicht/include/IVideoDriver.h"
+#include "../../irrlicht/include/IAttributes.h"
 
 namespace irr
 {

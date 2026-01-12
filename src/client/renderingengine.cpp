@@ -18,15 +18,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#include <IrrlichtDevice.h>
-#include <irrlicht.h>
+#include "../../irrlicht/include/IrrlichtDevice.h"
+#include "../../irrlicht/include/irrlicht.h"
 #include "fontengine.h"
 #include "client.h"
 #include "clouds.h"
-#include "util/numeric.h"
+#include "../util/numeric.h"
 #include "guiscalingfilter.h"
 #include "localplayer.h"
-#include "client/hud.h"
+#include "hud.h"
 #include "camera.h"
 #include "minimap.h"
 #include "clientmap.h"
@@ -34,7 +34,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "render/core.h"
 #include "render/factory.h"
 #include "inputhandler.h"
-#include "gettext.h"
+#include "../gettext.h"
 #include "../gui/guiSkin.h"
 
 #if !defined(_WIN32) && !defined(__APPLE__) && !defined(__ANDROID__) && \

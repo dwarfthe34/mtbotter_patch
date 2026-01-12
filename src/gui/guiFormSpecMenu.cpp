@@ -26,35 +26,35 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "guiFormSpecMenu.h"
 #include "guiScrollBar.h"
 #include "guiTable.h"
-#include "constants.h"
-#include "gamedef.h"
-#include "client/keycode.h"
-#include "util/strfnd.h"
-#include <IGUIButton.h>
-#include <IGUICheckBox.h>
-#include <IGUIComboBox.h>
-#include <IGUIEditBox.h>
-#include <IGUIStaticText.h>
-#include <IGUIFont.h>
-#include <IGUITabControl.h>
-#include "client/renderingengine.h"
-#include "log.h"
-#include "client/tile.h" // ITextureSource
-#include "client/hud.h" // drawItemStack
-#include "filesys.h"
-#include "gettime.h"
-#include "gettext.h"
-#include "scripting_server.h"
+#include "../constants.h"
+#include "../gamedef.h"
+#include "../client/keycode.h"
+#include "../util/strfnd.h"
+#include "../../irrlicht/include/IGUIButton.h"
+#include "../../irrlicht/include/IGUICheckBox.h"
+#include "../../irrlicht/include/IGUIComboBox.h"
+#include "../../irrlicht/include/IGUIEditBox.h"
+#include "../../irrlicht/include/IGUIStaticText.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../../irrlicht/include/IGUITabControl.h"
+#include "../client/renderingengine.h"
+#include "../log.h"
+#include "../client/tile.h" // ITextureSource
+#include "../client/hud.h" // drawItemStack
+#include "../filesys.h"
+#include "../gettime.h"
+#include "../gettext.h"
+#include "../script/scripting_server.h"
 #include "mainmenumanager.h"
-#include "porting.h"
-#include "settings.h"
-#include "client/client.h"
-#include "client/fontengine.h"
-#include "util/hex.h"
-#include "util/numeric.h"
-#include "util/string.h" // for parseColorString()
-#include "irrlicht_changes/static_text.h"
-#include "client/guiscalingfilter.h"
+#include "../porting.h"
+#include "../settings.h"
+#include "../client/client.h"
+#include "../client/fontengine.h"
+#include "../util/hex.h"
+#include "../util/numeric.h"
+#include "../util/string.h" // for parseColorString()
+#include "../irrlicht_changes/static_text.h"
+#include "../client/guiscalingfilter.h"
 #include "guiAnimatedImage.h"
 #include "guiBackgroundImage.h"
 #include "guiBox.h"

@@ -5,13 +5,13 @@
 
 #include "guiEditBoxWithScrollbar.h"
 
-#include "IGUISkin.h"
-#include "IGUIEnvironment.h"
-#include "IGUIFont.h"
-#include "IVideoDriver.h"
-#include "rect.h"
-#include "porting.h"
-#include "Keycodes.h"
+#include "../../irrlicht/include/IGUISkin.h"
+#include "../../irrlicht/include/IGUIEnvironment.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../../irrlicht/include/IVideoDriver.h"
+#include "../../irrlicht/include/rect.h"
+#include "../porting.h"
+#include "../../irrlicht/include/Keycodes.h"
 
 /*
 todo:

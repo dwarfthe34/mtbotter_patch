@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #pragma once
 #include <type_traits>
 #include "irrlichttypes.h"
-#include "IReferenceCounted.h"
+#include "../irrlicht/include/IReferenceCounted.h"
 
 /** Shared pointer for IrrLicht objects.
  *

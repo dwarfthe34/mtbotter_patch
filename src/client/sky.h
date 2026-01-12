@@ -17,11 +17,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#include <ISceneNode.h>
+#include "../../irrlicht/include/ISceneNode.h"
 #include <array>
 #include "camera.h"
-#include "irrlichttypes_extrabloated.h"
-#include "skyparams.h"
+#include "../irrlichttypes_extrabloated.h"
+#include "../skyparams.h"
 
 #pragma once
 

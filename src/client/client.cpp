@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <algorithm>
 #include <sstream>
 #include <cmath>
-#include <IFileSystem.h>
+#include "../irrlicht/include/IFileSystem.h"
 #include "client.h"
 #include "network/clientopcodes.h"
 #include "network/connection.h"

@@ -18,21 +18,21 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include "wieldmesh.h"
-#include "settings.h"
+#include "../settings.h"
 #include "shader.h"
 #include "inventory.h"
 #include "client.h"
-#include "itemdef.h"
-#include "nodedef.h"
+#include "../itemdef.h"
+#include "../nodedef.h"
 #include "mesh.h"
 #include "content_mapblock.h"
 #include "mapblock_mesh.h"
-#include "client/meshgen/collector.h"
-#include "client/tile.h"
-#include "log.h"
-#include "util/numeric.h"
+#include "meshgen/collector.h"
+#include "tile.h"
+#include "../log.h"
+#include "../util/numeric.h"
 #include <map>
-#include <IMeshManipulator.h>
+#include "../../irrlicht/include/IMeshManipulator.h"
 
 #define WIELD_SCALE_FACTOR 30.0
 #define WIELD_SCALE_FACTOR_EXTRUDED 40.0

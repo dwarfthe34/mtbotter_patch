@@ -19,16 +19,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <cmath>
 #include "content_mapblock.h"
-#include "util/numeric.h"
-#include "util/directiontables.h"
+#include "../util/numeric.h"
+#include "../util/directiontables.h"
 #include "mapblock_mesh.h"
 #include "settings.h"
 #include "nodedef.h"
-#include "client/tile.h"
+#include "tile.h"
 #include "mesh.h"
-#include <IMeshManipulator.h>
-#include "client/meshgen/collector.h"
-#include "client/renderingengine.h"
+#include "../../irrlicht/include/IMeshManipulator.h"
+#include "meshgen/collector.h"
+#include "renderingengine.h"
 #include "client.h"
 #include "noise.h"
 #include "defaultsettings.h"

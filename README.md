@@ -5,10 +5,9 @@ the world, add or remove blocks, punch nodes, mobs and players and receive curre
 few events such as removal or addition of a node, chat messages and time change.
 
 About 80-90 % of the credit of this project goes to celeron55
-and other authors and contributors of Minetest(engine).
-Some more credit(9.9% i would say) goes to farooqkz the creator of mtbotter, I take credit of updating README.md
-for correct compiling as of the ways i know how to compile it. And i have made more example bots so check out the examples/
-folder for that.
+and other authors and contributors of Minetest(engine). And to the creators of Irrlicht
+Roughly 9.9% of this repository's credit goes to Farooqkz the creator of MtBotter.
+And I take the remaining 0.1% of credit for patching this bot library.
 
 To code a bot in C++(if you want to code your bot in other languages, see Other
 languages section), see CREATE-BOT.md
@@ -19,45 +18,21 @@ Currently you don't have any option but C++.
 
 ## Build
 
-Follow [Compiling instructions of Minetest](https://github.com/minetest/minetest#compiling).
+To build MtBotter run the following:
+ ``` cmake . ``` (or if you want ``` cmake . -DRUN_IN_PLACE=TRUE``` to have it run in place and it also what Luanti does) after do ```make -j$(nproc)```
+to use all CPU cores for faster building. 
 The resulting library will appear in `/lib/` as `libmtbotter.so` on POSIX
 systems(including Linux).
 
-On Linux my way to compile it is listed here,
-```bash
-sudo apt update
-sudo apt install build-essential wget git
-sudo apt install gcc-9 g++-9
-gcc-9 --version
-g++-9 --version
-sudo apt install \
-libbz2-dev \
-zlib1g-dev \
-libjpeg-dev \
-libpng-dev \
-libluajit-5.1-dev \
-libcurl4-openssl-dev \
-libfreetype6-dev \
-libopenal-dev \
-libvorbis-dev \
-libsqlite3-dev \
-libx11-dev \
-libirrlicht-dev \
-gettext
-wget https://github.com/Kitware/CMake/releases/download/v3.16.0/cmake-3.16.0-Linux-x86_64.sh
-sudo sh cmake-3.16.0-Linux-x86_64.sh --skip-license --prefix=/usr/local
-cmake --version
-cmake -DCMAKE_C_COMPILER=gcc-9 \
-      -DCMAKE_CXX_COMPILER=g++-9 \
-      -DCMAKE_CXX_STANDARD=20 ..
--DCMAKE_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-make -j4
-```
-Quite intimidating I know but that's the best way I have for you for now. 
-
 I haven't tested compiling it on other Operating Systems such as Windows or Mac OS X
 but it should work.
-
+## Run the bot
+From my testing the best method of running you bot is stated here 
+``` g++ -std=c++17 -I./src -I./lib/jsoncpp -I./lib/lua/src \
+    mybot.cpp -L./lib -lmtbotter -ljsoncpp -llua -o mybot
+```
+The file "mybot.cpp" is whatever you named your bot file and the name after "-o" (in my case "mybot") is the name of your bot's binary file. 
+The binary file is the one you execute. To do that in my case would be "./mybot" but remember it does not need to be named "mybot".
 ## Todo
 
 There are many files, functions, methods, classes and structures

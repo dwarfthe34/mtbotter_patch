@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include <string>
 #include <vector>
-#include <SColor.h>
+#include "../../irrlicht/include/SColor.h"
 
 class EnrichedString {
 public:

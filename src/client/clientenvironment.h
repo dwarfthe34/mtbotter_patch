@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #pragma once
 
 #include "environment.h"
-#include <ISceneManager.h>
+#include "../../irrlicht/include/ISceneManager.h"
 #include "clientobject.h"
 #include "util/numeric.h"
 #include "activeobjectmgr.h"

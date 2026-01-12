@@ -18,20 +18,20 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include "sky.h"
-#include "ITexture.h"
-#include "IVideoDriver.h"
-#include "ISceneManager.h"
-#include "ICameraSceneNode.h"
-#include "S3DVertex.h"
-#include "client/tile.h"
-#include "noise.h" // easeCurve
-#include "profiler.h"
-#include "util/numeric.h"
+#include "../../irrlicht/include/ITexture.h"
+#include "../../irrlicht/include/IVideoDriver.h"
+#include "../../irrlicht/include/ISceneManager.h"
+#include "../../irrlicht/include/ICameraSceneNode.h"
+#include "../../irrlicht/include/S3DVertex.h"
+#include "tile.h"
+#include "../noise.h" // easeCurve
+#include "../profiler.h"
+#include "../util/numeric.h"
 #include <cmath>
-#include "client/renderingengine.h"
-#include "settings.h"
+#include "renderingengine.h"
+#include "../settings.h"
 #include "camera.h" // CameraModes
-#include "config.h"
+#include "../config.h"
 using namespace irr::core;
 
 Sky::Sky(s32 id, ITextureSource *tsrc) :

@@ -4,14 +4,14 @@
 
 #pragma once
 
-#include "IrrCompileConfig.h"
+#include "../../irrlicht/include/IrrCompileConfig.h"
 
-#include <IGUIStaticText.h>
+#include "../../irrlicht/include/IGUIStaticText.h"
 #include "irrlicht_changes/static_text.h"
-#include "IGUIButton.h"
-#include "IGUISpriteBank.h"
-#include "ITexture.h"
-#include "SColor.h"
+#include "../../irrlicht/include/IGUIButton.h"
+#include "../../irrlicht/include/IGUISpriteBank.h"
+#include "../../irrlicht/include/ITexture.h"
+#include "../../irrlicht/include/SColor.h"
 #include "guiSkin.h"
 #include "StyleSpec.h"
 

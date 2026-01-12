@@ -20,8 +20,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #pragma once
 
 #include "irrlichttypes.h"
-#include "Keycodes.h"
-#include <IEventReceiver.h>
+#include "../../irrlicht/include/Keycodes.h"
+#include "../../irrlicht/include/IEventReceiver.h"
 #include <string>
 
 /* A key press, consisting of either an Irrlicht keycode

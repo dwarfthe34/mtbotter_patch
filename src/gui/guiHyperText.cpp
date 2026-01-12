@@ -17,23 +17,23 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#include "IGUIEnvironment.h"
-#include "IGUIElement.h"
+#include "../../irrlicht/include/IGUIEnvironment.h"
+#include "../../irrlicht/include/IGUIElement.h"
 #include "guiScrollBar.h"
-#include "IGUIFont.h"
+#include "../../irrlicht/include/IGUIFont.h"
 #include <vector>
 #include <list>
 #include <unordered_map>
 using namespace irr::gui;
-#include "client/fontengine.h"
-#include <SColor.h>
-#include "client/tile.h"
-#include "IVideoDriver.h"
-#include "client/client.h"
-#include "client/renderingengine.h"
-#include "hud.h"
+#include "../client/fontengine.h"
+#include "../../irrlicht/include/SColor.h"
+#include "../client/tile.h"
+#include "../../irrlicht/include/IVideoDriver.h"
+#include "../client/client.h"
+#include "../client/renderingengine.h"
+#include "../hud.h"
 #include "guiHyperText.h"
-#include "util/string.h"
+#include "../util/string.h"
 
 bool check_color(const std::string &str)
 {

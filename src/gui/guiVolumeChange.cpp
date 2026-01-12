@@ -18,18 +18,18 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 
 #include "guiVolumeChange.h"
-#include "debug.h"
+#include "../debug.h"
 #include "guiButton.h"
-#include "serialization.h"
+#include "../serialization.h"
 #include <string>
-#include <IGUICheckBox.h>
-#include <IGUIButton.h>
-#include <IGUIScrollBar.h>
-#include <IGUIStaticText.h>
-#include <IGUIFont.h>
-#include "settings.h"
+#include "../../irrlicht/include/IGUICheckBox.h"
+#include "../../irrlicht/include/IGUIButton.h"
+#include "../../irrlicht/include/IGUIScrollBar.h"
+#include "../../irrlicht/include/IGUIStaticText.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../settings.h"
 
-#include "gettext.h"
+#include "../gettext.h"
 
 const int ID_soundText = 263;
 const int ID_soundExitButton = 264;

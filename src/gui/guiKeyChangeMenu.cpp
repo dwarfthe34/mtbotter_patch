@@ -20,16 +20,16 @@
  */
 
 #include "guiKeyChangeMenu.h"
-#include "debug.h"
+#include "../debug.h"
 #include "guiButton.h"
-#include "serialization.h"
+#include "../serialization.h"
 #include <string>
-#include <IGUICheckBox.h>
-#include <IGUIEditBox.h>
-#include <IGUIButton.h>
-#include <IGUIStaticText.h>
-#include <IGUIFont.h>
-#include "settings.h"
+#include "../../irrlicht/include/IGUICheckBox.h"
+#include "../../irrlicht/include/IGUIEditBox.h"
+#include "../../irrlicht/include/IGUIButton.h"
+#include "../../irrlicht/include/IGUIStaticText.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../settings.h"
 #include <algorithm>
 
 #include "mainmenumanager.h"  // for g_gamecallback

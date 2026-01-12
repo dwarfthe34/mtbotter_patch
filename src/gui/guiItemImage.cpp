@@ -18,7 +18,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include "guiItemImage.h"
-#include "client/client.h"
+#include "../client/client.h"
 
 GUIItemImage::GUIItemImage(gui::IGUIEnvironment *env, gui::IGUIElement *parent,
 	s32 id, const core::rect<s32> &rectangle, const std::string &item_name,

@@ -5,8 +5,8 @@
 #ifndef GUIEDITBOXWITHSCROLLBAR_HEADER
 #define GUIEDITBOXWITHSCROLLBAR_HEADER
 
-#include "IGUIEditBox.h"
-#include "IOSOperator.h"
+#include "../../irrlicht/include/IGUIEditBox.h"
+#include "../../irrlicht/include/IOSOperator.h"
 #include "guiScrollBar.h"
 #include <vector>
 

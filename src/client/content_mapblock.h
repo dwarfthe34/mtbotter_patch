@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #pragma once
 
 #include "nodedef.h"
-#include <IMeshManipulator.h>
+#include "../../irrlicht/include/IMeshManipulator.h"
 
 struct MeshMakeData;
 struct MeshCollector;

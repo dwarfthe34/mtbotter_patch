@@ -6,19 +6,19 @@
 
 #pragma once
 
-#include "IrrCompileConfig.h"
+#include "../../irrlicht/include/IrrCompileConfig.h"
 #ifdef _IRR_COMPILE_WITH_GUI_
 
-#include "IGUIStaticText.h"
-#include "irrArray.h"
+#include "../../irrlicht/include/IGUIStaticText.h"
+#include "../../irrlicht/include/irrArray.h"
 
 #include "log.h"
 
 #include <vector>
 
-#include "util/enriched_string.h"
+#include "../util/enriched_string.h"
 #include "config.h"
-#include <IGUIEnvironment.h>
+#include "../../irrlicht/include/IGUIEnvironment.h"
 
 #if USE_FREETYPE
 

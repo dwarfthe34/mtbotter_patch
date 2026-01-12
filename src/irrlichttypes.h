@@ -30,7 +30,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #	include <cstdint>
 #endif
 
-#include <irrTypes.h>
+#include "../irrlicht/include/irrTypes.h"
 
 using namespace irr;
 

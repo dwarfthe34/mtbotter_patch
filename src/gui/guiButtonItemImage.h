@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #pragma once
 
 #include "guiButton.h"
-#include "IGUIButton.h"
+#include "../../irrlicht/include/IGUIButton.h"
 
 using namespace irr;
 

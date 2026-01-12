@@ -18,14 +18,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include "mesh.h"
-#include "debug.h"
-#include "log.h"
-#include "irrMap.h"
+#include "../debug.h"
+#include "../log.h"
+#include "../../irrlicht/include/irrMap.h"
 #include <cmath>
 #include <iostream>
-#include <IAnimatedMesh.h>
-#include <SAnimatedMesh.h>
-#include <IAnimatedMeshSceneNode.h>
+#include "../../irrlicht/include/IAnimatedMesh.h"
+#include "../../irrlicht/include/SAnimatedMesh.h"
+#include "../../irrlicht/include/IAnimatedMeshSceneNode.h"
 
 // In Irrlicht 1.8 the signature of ITexture::lock was changed from
 // (bool, u32) to (E_TEXTURE_LOCK_MODE, u32).

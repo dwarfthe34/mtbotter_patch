@@ -21,22 +21,22 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <fstream>
 #include <iterator>
 #include "shader.h"
-#include "irrlichttypes_extrabloated.h"
-#include "debug.h"
-#include "filesys.h"
-#include "util/container.h"
-#include "util/thread.h"
-#include "settings.h"
-#include <ICameraSceneNode.h>
-#include <IGPUProgrammingServices.h>
-#include <IMaterialRenderer.h>
-#include <IMaterialRendererServices.h>
-#include <IShaderConstantSetCallBack.h>
-#include "client/renderingengine.h"
-#include "EShaderTypes.h"
-#include "log.h"
-#include "gamedef.h"
-#include "client/tile.h"
+#include "../irrlichttypes_extrabloated.h"
+#include "../debug.h"
+#include "../filesys.h"
+#include "../util/container.h"
+#include "../util/thread.h"
+#include "../settings.h"
+#include "../../irrlicht/include/ICameraSceneNode.h"
+#include "../../irrlicht/include/IGPUProgrammingServices.h"
+#include "../../irrlicht/include/IMaterialRenderer.h"
+#include "../../irrlicht/include/IMaterialRendererServices.h"
+#include "../../irrlicht/include/IShaderConstantSetCallBack.h"
+#include "renderingengine.h"
+#include "../../irrlicht/include/EShaderTypes.h"
+#include "../log.h"
+#include "../gamedef.h"
+#include "tile.h"
 
 /*
 	A cache from shader name to shader path

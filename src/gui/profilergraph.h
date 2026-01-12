@@ -19,12 +19,12 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #pragma once
 
-#include <SColor.h>
+#include "../../irrlicht/include/SColor.h"
 #include <deque>
 #include <utility>
-#include <IGUIFont.h>
-#include <IVideoDriver.h>
-#include "profiler.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../../irrlicht/include/IVideoDriver.h"
+#include "../profiler.h"
 
 /* Profiler display */
 class ProfilerGraph

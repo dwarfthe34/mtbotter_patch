@@ -22,9 +22,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <map>
 #include <vector>
 #include "util/basic_macros.h"
-#include <IGUIFont.h>
-#include <IGUISkin.h>
-#include <IGUIEnvironment.h>
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../../irrlicht/include/IGUISkin.h"
+#include "../../irrlicht/include/IGUIEnvironment.h"
 #include "settings.h"
 
 #define FONT_SIZE_UNSPECIFIED 0xFFFFFFFF

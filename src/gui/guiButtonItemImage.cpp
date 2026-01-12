@@ -19,11 +19,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "guiButtonItemImage.h"
 
-#include "client/client.h"
-#include "client/hud.h" // drawItemStack
+#include "../client/client.h"
+#include "../client/hud.h" // drawItemStack
 #include "guiItemImage.h"
-#include "IGUIEnvironment.h"
-#include "itemdef.h"
+#include "../../irrlicht/include/IGUIEnvironment.h"
+#include "../itemdef.h"
 
 using namespace irr;
 using namespace gui;

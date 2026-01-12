@@ -29,17 +29,17 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#include <util/numeric.h>
+#include "../util/numeric.h"
 #include "intlGUIEditBox.h"
 
-#include "IGUISkin.h"
-#include "IGUIEnvironment.h"
-#include "IGUIFont.h"
-#include "IVideoDriver.h"
+#include "../../irrlicht/include/IGUISkin.h"
+#include "../../irrlicht/include/IGUIEnvironment.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../../irrlicht/include/IVideoDriver.h"
 //#include "irrlicht/os.cpp"
-#include "porting.h"
+#include "../porting.h"
 //#include "Keycodes.h"
-#include "log.h"
+#include "../log.h"
 
 /*
 	todo:

@@ -26,7 +26,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "network/networkpacket.h"
 #include "network/networkprotocol.h"
 #include "porting.h"
-
+#include <memory>
 #include <list>
 #include <vector>
 #include <set>

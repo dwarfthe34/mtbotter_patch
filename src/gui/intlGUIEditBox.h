@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "IrrCompileConfig.h"
+#include "../../irrlicht/include/IrrCompileConfig.h"
 //#ifdef _IRR_COMPILE_WITH_GUI_
 
-#include <IGUIEditBox.h>
-#include "irrArray.h"
-#include "IOSOperator.h"
+#include "../../irrlicht/include/IGUIEditBox.h"
+#include "../../irrlicht/include/irrArray.h"
+#include "../../irrlicht/include/IOSOperator.h"
 #include "guiScrollBar.h"
 
 namespace irr

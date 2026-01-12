@@ -18,18 +18,18 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 #include "content_cao.h"
-#include <IBillboardSceneNode.h>
-#include <ICameraSceneNode.h>
-#include <ITextSceneNode.h>
-#include <IMeshManipulator.h>
-#include <IAnimatedMeshSceneNode.h>
-#include "client/client.h"
-#include "client/renderingengine.h"
-#include "client/sound.h"
-#include "client/tile.h"
-#include "util/basic_macros.h"
-#include "util/numeric.h" // For IntervalLimiter & setPitchYawRoll
-#include "util/serialize.h"
+#include "../../irrlicht/include/IBillboardSceneNode.h"
+#include "../../irrlicht/include/ICameraSceneNode.h"
+#include "../../irrlicht/include/ITextSceneNode.h"
+#include "../../irrlicht/include/IMeshManipulator.h"
+#include "../../irrlicht/include/IAnimatedMeshSceneNode.h"
+#include "client.h"
+#include "renderingengine.h"
+#include "sound.h"
+#include "tile.h"
+#include "../util/basic_macros.h"
+#include "../util/numeric.h" // For IntervalLimiter & setPitchYawRoll
+#include "../util/serialize.h"
 #include "camera.h" // CameraModes
 #include "collision.h"
 #include "content_cso.h"

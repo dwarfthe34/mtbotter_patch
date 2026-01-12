@@ -31,7 +31,7 @@
 
 #pragma once
 
-#include <irrlicht.h>
+#include "../irrlicht/include/irrlicht.h"
 #include <ft2build.h>
 #include <vector>
 #include "irrUString.h"

@@ -2,26 +2,26 @@
 
 #pragma once
 
-#define PROJECT_NAME "minetest"
-#define PROJECT_NAME_C "Minetest"
+#define PROJECT_NAME "mtbotter"
+#define PROJECT_NAME_C "MtBotter"
 #define VERSION_MAJOR 5
 #define VERSION_MINOR 3
 #define VERSION_PATCH 0
 #define VERSION_EXTRA ""
-#define VERSION_STRING "5.3.0-debug"
+#define VERSION_STRING "5.3.0"
 #define PRODUCT_VERSION_STRING "5.3"
-#define STATIC_SHAREDIR "/usr/local/share/minetest"
-#define STATIC_LOCALEDIR "/usr/local/share/locale"
-#define BUILD_TYPE "Debug"
-#define ICON_DIR "/usr/local/share/icons"
+#define STATIC_SHAREDIR "share/mtbotter"
+#define STATIC_LOCALEDIR "share/locale"
+#define BUILD_TYPE "Release"
+#define ICON_DIR ""
 #define RUN_IN_PLACE 0
-#define USE_GETTEXT 0
+#define USE_GETTEXT 1
 #define USE_CURL 1
 #define USE_SOUND 1
 #define USE_FREETYPE 1
 #define USE_CURSES 1
 #define USE_LEVELDB 0
-#define USE_LUAJIT 0
+#define USE_LUAJIT 1
 #define USE_POSTGRESQL 0
 #define USE_PROMETHEUS 0
 #define USE_SPATIAL 0

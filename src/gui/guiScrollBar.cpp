@@ -11,8 +11,8 @@ the arrow buttons where there is insufficient space.
 */
 
 #include "guiScrollBar.h"
-#include <IGUIButton.h>
-#include <IGUISkin.h>
+#include "../../irrlicht/include/IGUIButton.h"
+#include "../../irrlicht/include/IGUISkin.h"
 
 GUIScrollBar::GUIScrollBar(IGUIEnvironment *environment, IGUIElement *parent, s32 id,
 		core::rect<s32> rectangle, bool horizontal, bool auto_scale) :

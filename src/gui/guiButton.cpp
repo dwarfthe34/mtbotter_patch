@@ -5,16 +5,16 @@
 #include "guiButton.h"
 
 
-#include "client/guiscalingfilter.h"
-#include "client/tile.h"
-#include "IGUISkin.h"
-#include "IGUIEnvironment.h"
-#include "IVideoDriver.h"
-#include "IGUIFont.h"
+#include "../client/guiscalingfilter.h"
+#include "../client/tile.h"
+#include "../../irrlicht/include/IGUISkin.h"
+#include "../../irrlicht/include/IGUIEnvironment.h"
+#include "../../irrlicht/include/IVideoDriver.h"
+#include "../../irrlicht/include/IGUIFont.h"
 #include "irrlicht_changes/static_text.h"
-#include "porting.h"
+#include "../porting.h"
 #include "StyleSpec.h"
-#include "util/numeric.h"
+#include "../util/numeric.h"
 
 using namespace irr;
 using namespace gui;

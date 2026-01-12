@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <list>
-#include "mtbotter.h"
+#include "../src/mtbotter.h"
 using namespace std;
 
 bool got_sigint = false;

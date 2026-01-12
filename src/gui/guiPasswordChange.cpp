@@ -17,13 +17,13 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 
 #include "guiPasswordChange.h"
-#include "client/client.h"
+#include "../client/client.h"
 #include "guiButton.h"
-#include <IGUICheckBox.h>
-#include <IGUIEditBox.h>
-#include <IGUIButton.h>
-#include <IGUIStaticText.h>
-#include <IGUIFont.h>
+#include "../../irrlicht/include/IGUICheckBox.h"
+#include "../../irrlicht/include/IGUIEditBox.h"
+#include "../../irrlicht/include/IGUIButton.h"
+#include "../../irrlicht/include/IGUIStaticText.h"
+#include "../../irrlicht/include/IGUIFont.h"
 
 #include "porting.h"
 #include "gettext.h"

@@ -5,13 +5,13 @@
 #ifndef __GUI_SKIN_H_INCLUDED__
 #define __GUI_SKIN_H_INCLUDED__
 
-#include "IrrCompileConfig.h"
+#include "../../irrlicht/include/IrrCompileConfig.h"
 #ifdef _IRR_COMPILE_WITH_GUI_
 
-#include "IGUISkin.h"
-#include "irrString.h"
+#include "../../irrlicht/include/IGUISkin.h"
+#include "../../irrlicht/include/irrString.h"
 #include <string>
-#include "ITexture.h"
+#include "../../irrlicht/include/ITexture.h"
 
 namespace irr
 {

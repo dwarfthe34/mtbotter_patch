@@ -7,10 +7,10 @@
 #include "static_text.h"
 #ifdef _IRR_COMPILE_WITH_GUI_
 
-#include <IGUIFont.h>
-#include <IVideoDriver.h>
-#include <rect.h>
-#include <SColor.h>
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../../irrlicht/include/IVideoDriver.h"
+#include "../../irrlicht/include/rect.h"
+#include "../../irrlicht/include/SColor.h"
 
 #if USE_FREETYPE
 	#include "CGUITTFont.h"

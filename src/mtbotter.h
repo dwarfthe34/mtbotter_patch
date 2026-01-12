@@ -20,7 +20,7 @@
 #include "constants.h"
 #include "client/camera.h"
 #include "util/pointedthing.h"
-#include <line3d.h>
+#include "../irrlicht/include/line3d.h"
 #include "raycast.h"
 #include "activeobject.h"
 #include "client/clientobject.h"

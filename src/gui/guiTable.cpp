@@ -23,19 +23,19 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <sstream>
 #include <utility>
 #include <cstring>
-#include <IGUISkin.h>
-#include <IGUIFont.h>
-#include "client/renderingengine.h"
-#include "debug.h"
-#include "log.h"
-#include "client/tile.h"
-#include "gettime.h"
-#include "util/string.h"
-#include "util/numeric.h"
-#include "util/string.h" // for parseColorString()
-#include "settings.h" // for settings
-#include "porting.h" // for dpi
-#include "client/guiscalingfilter.h"
+#include "../../irrlicht/include/IGUISkin.h"
+#include "../../irrlicht/include/IGUIFont.h"
+#include "../client/renderingengine.h"
+#include "../debug.h"
+#include "../log.h"
+#include "../client/tile.h"
+#include "../gettime.h"
+#include "../util/string.h"
+#include "../util/numeric.h"
+#include "../util/string.h" // for parseColorString()
+#include "../settings.h" // for settings
+#include "../porting.h" // for dpi
+#include "../client/guiscalingfilter.h"
 
 /*
 	GUITable

@@ -19,11 +19,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #include "guiButtonImage.h"
 
-#include "client/guiscalingfilter.h"
-#include "debug.h"
-#include "IGUIEnvironment.h"
-#include "IGUIImage.h"
-#include "IVideoDriver.h"
+#include "../client/guiscalingfilter.h"
+#include "../debug.h"
+#include "../../irrlicht/include/IGUIEnvironment.h"
+#include "../../irrlicht/include/IGUIImage.h"
+#include "../../irrlicht/include/IVideoDriver.h"
 #include "StyleSpec.h"
 
 using namespace irr;

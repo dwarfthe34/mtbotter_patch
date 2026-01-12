@@ -22,7 +22,7 @@
 #include <string>
 
 #include "modalMenu.h"
-#include "IGUIFileOpenDialog.h"
+#include "../../irrlicht/include/IGUIFileOpenDialog.h"
 #include "guiFormSpecMenu.h" //required because of TextDest only !!!
 
 class GUIFileSelectMenu : public GUIModalMenu

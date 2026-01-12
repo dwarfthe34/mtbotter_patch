@@ -27,7 +27,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "nameidmapping.h"
 #ifndef SERVER
 #include "client/tile.h"
-#include <IMeshManipulator.h>
+#include "../irrlicht/include/IMeshManipulator.h"
 class Client;
 #endif
 #include "itemgroup.h"

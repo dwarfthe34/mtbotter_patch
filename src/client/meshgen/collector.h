@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include <array>
 #include <vector>
 #include "irrlichttypes.h"
-#include <S3DVertex.h>
+#include "../../../irrlicht/include/S3DVertex.h"
 #include "client/tile.h"
 
 struct PreMeshBuffer

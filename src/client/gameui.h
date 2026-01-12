@@ -20,7 +20,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 #pragma once
 
-#include <IGUIEnvironment.h>
+#include "../../irrlicht/include/IGUIEnvironment.h"
 #include "gui/guiFormSpecMenu.h"
 #include "util/enriched_string.h"
 #include "util/pointedthing.h"
