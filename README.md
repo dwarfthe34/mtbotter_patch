@@ -19,7 +19,7 @@ Currently you don't have any option but C++.
 ## Build
 
 To build MtBotter run the following:
- ``` cmake . ``` (or if you want ``` cmake . -DRUN_IN_PLACE=TRUE``` to have it run in place and it also what Luanti does) after do ```make -j$(nproc)```
+ ``` cmake . ``` (or if you want ``` cmake . -DRUN_IN_PLACE=TRUE``` to have it run in place and it's also what Luanti does) after do ```make -j$(nproc)```
 to use all CPU cores for faster building. 
 The resulting library will appear in `/lib/` as `libmtbotter.so` on POSIX
 systems(including Linux).
