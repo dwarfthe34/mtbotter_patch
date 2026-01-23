@@ -14,7 +14,7 @@ languages section), see CREATE-BOT.md.
 
 ## Other languages
 
-Currently you don't have any option but C++.
+At the moment you need to code in C++ for bots in the near future I will change that to have Lua support.
 
 ## Build
 
