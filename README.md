@@ -25,7 +25,7 @@ The resulting library will appear in `/lib/` as `libmtbotter.so` on POSIX
 systems(including Linux).
 
 I haven't tested compiling it on other Operating Systems such as Windows or Mac OS X
-but it should work.
+it might not work because of how the g++ command and how the CMakelists.txt does it's thing.
 If you run into any error try upgrading CMake to the latest version.
 ## Run the bot
 From my testing the best method of running you bot is stated here 
