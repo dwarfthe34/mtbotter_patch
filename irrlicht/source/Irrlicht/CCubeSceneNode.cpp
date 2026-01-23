@@ -2,19 +2,13 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#include "IrrCompileConfig.h"
-#ifdef _IRR_COMPILE_WITH_CUBE_SCENENODE_
 #include "CCubeSceneNode.h"
 #include "IVideoDriver.h"
 #include "ISceneManager.h"
 #include "S3DVertex.h"
 #include "SMeshBuffer.h"
 #include "os.h"
-#ifdef _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 #include "CShadowVolumeSceneNode.h"
-#else
-#include "IShadowVolumeSceneNode.h"
-#endif // _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 
 namespace irr
 {
@@ -153,7 +147,6 @@ bool CCubeSceneNode::removeChild(ISceneNode* child)
 IShadowVolumeSceneNode* CCubeSceneNode::addShadowVolumeSceneNode(
 		const IMesh* shadowMesh, s32 id, bool zfailmethod, f32 infinity)
 {
-#ifdef _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 	if (!SceneManager->getVideoDriver()->queryFeature(video::EVDF_STENCIL_BUFFER))
 		return 0;
 
@@ -165,9 +158,6 @@ IShadowVolumeSceneNode* CCubeSceneNode::addShadowVolumeSceneNode(
 
 	Shadow = new CShadowVolumeSceneNode(shadowMesh, this, SceneManager, id,  zfailmethod, infinity);
 	return Shadow;
-#else
-	return 0;
-#endif
 }
 
 
@@ -243,4 +233,3 @@ ISceneNode* CCubeSceneNode::clone(ISceneNode* newParent, ISceneManager* newManag
 } // end namespace scene
 } // end namespace irr
 
-#endif // _IRR_COMPILE_WITH_CUBE_SCENENODE_

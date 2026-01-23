@@ -10,8 +10,8 @@ class MonsterKiller : public MtBotter {
     public:
     MonsterKiller():MtBotter("testbot",
                       string(""),
-                      string("oy.edgy1.net"),
-                      string("oy.edgy1.net"),
+                      string("127.0.0.1"),
+                      string("127.0.0.1"),
                       30420,
                       false){}
     private:
@@ -32,39 +32,12 @@ class MonsterKiller : public MtBotter {
         SomeObject obj;
         bool got_wanted;
         while (!got_sigint) {
-            step(2.0);
-            got_wanted = false;
-            if (!(i++ % 135)) {
-                objs = getNearestObjects(100);
-                for (auto someobj : objs) {
-                    if (someobj.localplayer) {
-                        continue;
-                    }
-                    auto fleshy=someobj.groups.find("fleshy");
-                    auto immortal=someobj.immortal;
-                    if (fleshy == someobj.groups.end())
-                        continue;
-                    if (fleshy->second > 0 && immortal) {
-                        obj = someobj;
-                        got_wanted = true;
-                        break;
-                    }
-                }
-                if (!got_wanted) {
-                    step(0.5);
-                    continue;
-                }
-                float diff_x = obj.posX - getPosX()/10;
-                float diff_z = obj.posZ - getPosZ()/10;
-                float radian, degree;
-                radian = atan2(diff_x, diff_z);
-                degree = 360 - radian * 180 / M_PI;
-                turnLeft(degree - getHeadingH());
-                step(1.0);
-                punch();
-            }
+    		move(FORWARD);  // flag to move forward
+    		step(0.1f);     // send updates to the server
+		}
+
         }
-    }
+
 };
 
 int main() {

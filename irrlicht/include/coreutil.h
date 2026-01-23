@@ -20,26 +20,27 @@ namespace core
 // ----------- some basic quite often used string functions -----------------
 
 //! search if a filename has a proper extension
-inline s32 isFileExtension (const io::path& filename, const io::path& ext0,
-				const io::path& ext1, const io::path& ext2)
+inline s32 isFileExtension (	const io::path& filename,
+								const io::path& ext0,
+								const io::path& ext1,
+								const io::path& ext2)
 {
 	s32 extPos = filename.findLast ( '.' );
 	if ( extPos < 0 )
 		return 0;
 
 	extPos += 1;
-	if ( filename.equals_substring_ignore_case ( ext0, extPos ) )
-		return 1;
-	if ( filename.equals_substring_ignore_case ( ext1, extPos ) )
-		return 2;
-	if ( filename.equals_substring_ignore_case ( ext2, extPos ) )
-		return 3;
+	if ( filename.equals_substring_ignore_case ( ext0, extPos ) ) return 1;
+	if ( filename.equals_substring_ignore_case ( ext1, extPos ) ) return 2;
+	if ( filename.equals_substring_ignore_case ( ext2, extPos ) ) return 3;
 	return 0;
 }
 
 //! search if a filename has a proper extension
-inline bool hasFileExtension(const io::path& filename, const io::path& ext0,
-				const io::path& ext1 = "", const io::path& ext2 = "")
+inline bool hasFileExtension (	const io::path& filename,
+								const io::path& ext0,
+								const io::path& ext1 = "",
+								const io::path& ext2 = "")
 {
 	return isFileExtension ( filename, ext0, ext1, ext2 ) > 0;
 }
@@ -113,12 +114,14 @@ inline io::path& deletePathFromPath(io::path& filename, s32 pathCount)
 //! 0 means in same directory. 1 means file is direct child of path
 inline s32 isInSameDirectory ( const io::path& path, const io::path& file )
 {
+	s32 subA = 0;
+	s32 subB = 0;
+	s32 pos;
+
 	if ( path.size() && !path.equalsn ( file, path.size() ) )
 		return -1;
 
-	s32 subA = 0;
-	s32 subB = 0;
-	s32 pos = 0;
+	pos = 0;
 	while ( (pos = path.findNext ( '/', pos )) >= 0 )
 	{
 		subA += 1;
@@ -135,7 +138,7 @@ inline s32 isInSameDirectory ( const io::path& path, const io::path& file )
 	return subB - subA;
 }
 
-//! splits a path into components
+// splits a path into components
 static inline void splitFilename(const io::path &name, io::path* path=0,
 		io::path* filename=0, io::path* extension=0, bool make_lower=false)
 {
@@ -169,31 +172,11 @@ static inline void splitFilename(const io::path &name, io::path* path=0,
 		*filename = name.subString ( 0, extpos, make_lower );
 }
 
-//! create a filename from components
-static inline io::path mergeFilename(const io::path& path, const io::path& filename, const io::path& extension = "")
-{
-	io::path result(path);
-
-	if ( !result.empty() )
-	{
-		fschar_t last = result.lastChar();
-		if ( last != _IRR_TEXT('/') && last != _IRR_TEXT('\\') )
-			result += _IRR_TEXT('/');
-	}
-	if ( !filename.empty() )
-		result += filename;
-	if ( !extension.empty() )
-	{
-		if ( !result.empty() && extension[0] != _IRR_TEXT('.') )
-			result += _IRR_TEXT('.');
-		result += extension;
-	}
-
-	return result;
-}
-
 
 //! some standard function ( to remove dependencies )
+#undef isdigit
+#undef isspace
+#undef isupper
 inline s32 isdigit(s32 c) { return c >= '0' && c <= '9'; }
 inline s32 isspace(s32 c) { return c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v'; }
 inline s32 isupper(s32 c) { return c >= 'A' && c <= 'Z'; }

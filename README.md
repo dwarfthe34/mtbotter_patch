@@ -29,8 +29,7 @@ but it should work.
 ## Run the bot
 From my testing the best method of running you bot is stated here 
 ``` 
-g++ -std=c++17 -I./src -I./lib/jsoncpp -I./lib/lua/src \
-	mybot.cpp -L./lib -lmtbotter -ljsoncpp -llua -o mybot
+g++ -std=c++17     -I./src     -I./lib/jsoncpp     -I./lib/lua/src     -I/irrlicht/include     mybot.cpp     ./lib/lua/src/lapi.c ./lib/lua/src/lcode.c ./lib/lua/src/ldebug.c ./lib/lua/src/ldo.c ./lib/lua/src/ldump.c ./lib/lua/src/lfunc.c ./lib/lua/src/lgc.c ./lib/lua/src/llex.c ./lib/lua/src/lmem.c ./lib/lua/src/lobject.c ./lib/lua/src/lopcodes.c ./lib/lua/src/lparser.c ./lib/lua/src/lstate.c ./lib/lua/src/lstring.c ./lib/lua/src/ltable.c ./lib/lua/src/ltm.c ./lib/lua/src/lundump.c ./lib/lua/src/lvm.c ./lib/lua/src/lzio.c     -L./lib -lmtbotter -ljsoncpp     -L/irrlicht/lib -lIrrlicht     -Wl,-rpath,'$ORIGIN/lib'     -o mybot
 ```
 The file "mybot.cpp" is whatever you named your bot file and the name after "-o" (in my case "mybot") is the name of your bot's binary file. 
 The binary file is the one you execute. To do that in my case would be "./mybot" but remember it does not need to be named "mybot".

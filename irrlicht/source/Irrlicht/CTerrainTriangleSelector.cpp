@@ -2,10 +2,6 @@
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#include "IrrCompileConfig.h"
-
-#ifdef _IRR_COMPILE_WITH_TERRAIN_SCENENODE_
-
 #include "CTerrainTriangleSelector.h"
 #include "CTerrainSceneNode.h"
 #include "os.h"
@@ -81,8 +77,7 @@ void CTerrainTriangleSelector::setTriangleData(ITerrainSceneNode* node, s32 LOD)
 //! Gets all triangles.
 void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 			s32 arraySize, s32& outTriangleCount,
-			const core::matrix4* transform, bool useNodeTransform, 
-			irr::core::array<SCollisionTriangleRange>* outTriangleInfo) const
+			const core::matrix4* transform) const
 {
 	s32 count = TrianglePatches.TotalTriangles;
 
@@ -111,15 +106,6 @@ void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 			}
 	}
 
-	if ( outTriangleInfo )
-	{
-		SCollisionTriangleRange triRange;
-		triRange.RangeSize = tIndex;
-		triRange.Selector = const_cast<CTerrainTriangleSelector*>(this);
-		triRange.SceneNode = SceneNode;
-		outTriangleInfo->push_back(triRange);
-	}
-
 	outTriangleCount = tIndex;
 }
 
@@ -127,9 +113,7 @@ void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 //! Gets all triangles which lie within a specific bounding box.
 void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 		s32 arraySize, s32& outTriangleCount,
-		const core::aabbox3d<f32>& box, 
-		const core::matrix4* transform, bool useNodeTransform, 
-		irr::core::array<SCollisionTriangleRange>* outTriangleInfo) const
+		const core::aabbox3d<f32>& box, const core::matrix4* transform) const
 {
 	s32 count = TrianglePatches.TotalTriangles;
 
@@ -159,15 +143,6 @@ void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 			}
 	}
 
-	if ( outTriangleInfo )
-	{
-		SCollisionTriangleRange triRange;
-		triRange.RangeSize = tIndex;
-		triRange.Selector = const_cast<CTerrainTriangleSelector*>(this);
-		triRange.SceneNode = SceneNode;
-		outTriangleInfo->push_back(triRange);
-	}
-
 	outTriangleCount = tIndex;
 }
 
@@ -175,8 +150,7 @@ void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 //! Gets all triangles which have or may have contact with a 3d line.
 void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 		s32 arraySize, s32& outTriangleCount, const core::line3d<f32>& line,
-		const core::matrix4* transform, bool useNodeTransform, 
-		irr::core::array<SCollisionTriangleRange>* outTriangleInfo) const
+		const core::matrix4* transform) const
 {
 	const s32 count = core::min_((s32)TrianglePatches.TotalTriangles, arraySize);
 
@@ -203,15 +177,6 @@ void CTerrainTriangleSelector::getTriangles(core::triangle3df* triangles,
 				++tIndex;
 			}
 		}
-	}
-
-	if ( outTriangleInfo )
-	{
-		SCollisionTriangleRange triRange;
-		triRange.RangeSize = tIndex;
-		triRange.Selector = const_cast<CTerrainTriangleSelector*>(this);
-		triRange.SceneNode = SceneNode;
-		outTriangleInfo->push_back(triRange);
 	}
 
 	outTriangleCount = tIndex;
@@ -267,5 +232,3 @@ const ITriangleSelector* CTerrainTriangleSelector::getSelector(u32 index) const
 
 } // end namespace scene
 } // end namespace irr
-
-#endif // _IRR_COMPILE_WITH_TERRAIN_SCENENODE_

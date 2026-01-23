@@ -11,11 +11,7 @@
 #include "IAnimatedMesh.h"
 #include "IMaterialRenderer.h"
 #include "IFileSystem.h"
-#ifdef _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 #include "CShadowVolumeSceneNode.h"
-#else
-#include "IShadowVolumeSceneNode.h"
-#endif // _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 
 namespace irr
 {
@@ -93,7 +89,7 @@ void CMeshSceneNode::OnRegisterSceneNode()
 				video::IMaterialRenderer* rnd =
 					driver->getMaterialRenderer(Materials[i].MaterialType);
 
-				if ((rnd && rnd->isTransparent()) || Materials[i].isTransparent())
+				if (rnd && rnd->isTransparent())
 					++transparentCount;
 				else
 					++solidCount;
@@ -178,6 +174,8 @@ void CMeshSceneNode::render()
 			}
 		}
 	}
+
+	driver->setTransform(video::ETS_WORLD, AbsoluteTransformation);
 
 	// for debug purposes only:
 	if (DebugDataVisible && PassCount==1)
@@ -301,7 +299,6 @@ void CMeshSceneNode::setMesh(IMesh* mesh)
 IShadowVolumeSceneNode* CMeshSceneNode::addShadowVolumeSceneNode(
 		const IMesh* shadowMesh, s32 id, bool zfailmethod, f32 infinity)
 {
-#ifdef _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 	if (!SceneManager->getVideoDriver()->queryFeature(video::EVDF_STENCIL_BUFFER))
 		return 0;
 
@@ -313,9 +310,6 @@ IShadowVolumeSceneNode* CMeshSceneNode::addShadowVolumeSceneNode(
 
 	Shadow = new CShadowVolumeSceneNode(shadowMesh, this, SceneManager, id,  zfailmethod, infinity);
 	return Shadow;
-#else
-	return 0;
-#endif
 }
 
 

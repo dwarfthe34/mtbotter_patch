@@ -24,8 +24,7 @@ CGUIComboBox::CGUIComboBox(IGUIEnvironment* environment, IGUIElement* parent,
 	s32 id, core::rect<s32> rectangle)
 	: IGUIComboBox(environment, parent, id, rectangle),
 	ListButton(0), SelectedText(0), ListBox(0), LastFocus(0),
-	Selected(-1), HAlign(EGUIA_UPPERLEFT), VAlign(EGUIA_CENTER), MaxSelectionRows(5), HasFocus(false),
-	ActiveFont(0)
+	Selected(-1), HAlign(EGUIA_UPPERLEFT), VAlign(EGUIA_CENTER), MaxSelectionRows(5), HasFocus(false)
 {
 	#ifdef _DEBUG
 	setDebugName("CGUIComboBox");
@@ -33,7 +32,18 @@ CGUIComboBox::CGUIComboBox(IGUIEnvironment* environment, IGUIElement* parent,
 
 	IGUISkin* skin = Environment->getSkin();
 
-	ListButton = Environment->addButton(core::recti(0,0,1,1), this, -1, L"");
+	s32 width = 15;
+	if (skin)
+		width = skin->getSize(EGDS_WINDOW_BUTTON_WIDTH);
+
+	core::rect<s32> r;
+	r.UpperLeftCorner.X = rectangle.getWidth() - width - 2;
+	r.LowerRightCorner.X = rectangle.getWidth() - 2;
+
+	r.UpperLeftCorner.Y = 2;
+	r.LowerRightCorner.Y = rectangle.getHeight() - 2;
+
+	ListButton = Environment->addButton(r, this, -1, L"");
 	if (skin && skin->getSpriteBank())
 	{
 		ListButton->setSpriteBank(skin->getSpriteBank());
@@ -44,15 +54,18 @@ CGUIComboBox::CGUIComboBox(IGUIEnvironment* environment, IGUIElement* parent,
 	ListButton->setSubElement(true);
 	ListButton->setTabStop(false);
 
-	SelectedText = Environment->addStaticText(L"", core::recti(0,0,1,1), false, false, this, -1, false);
+	r.UpperLeftCorner.X = 2;
+	r.UpperLeftCorner.Y = 2;
+	r.LowerRightCorner.X = RelativeRect.getWidth() - (ListButton->getAbsolutePosition().getWidth() + 2);
+	r.LowerRightCorner.Y = RelativeRect.getHeight() - 2;
+
+	SelectedText = Environment->addStaticText(L"", r, false, false, this, -1, false);
 	SelectedText->setSubElement(true);
 	SelectedText->setAlignment(EGUIA_UPPERLEFT, EGUIA_LOWERRIGHT, EGUIA_UPPERLEFT, EGUIA_LOWERRIGHT);
 	SelectedText->setTextAlignment(EGUIA_UPPERLEFT, EGUIA_CENTER);
 	if (skin)
 		SelectedText->setOverrideColor(skin->getColor(EGDC_BUTTON_TEXT));
 	SelectedText->enableOverrideColor(true);
-
-	updateListButtonWidth(skin ? skin->getSize(EGDS_SCROLLBAR_SIZE) : 15);
 
 	// this element can be tabbed to
 	setTabStop(true);
@@ -81,7 +94,7 @@ void CGUIComboBox::setMaxSelectionRows(u32 max)
 	}
 }
 
-//! Get the maximal number of rows for the selection listbox
+//! Get the maximimal number of rows for the selection listbox
 u32 CGUIComboBox::getMaxSelectionRows() const
 {
 	return MaxSelectionRows;
@@ -363,24 +376,6 @@ void CGUIComboBox::sendSelectionChangedEvent()
 	}
 }
 
-void CGUIComboBox::updateListButtonWidth(s32 width)
-{
-	if (ListButton->getRelativePosition().getWidth() != width)
-	{
-		core::rect<s32> r;
-		r.UpperLeftCorner.X = RelativeRect.getWidth() - width - 2;
-		r.LowerRightCorner.X = RelativeRect.getWidth() - 2;
-		r.UpperLeftCorner.Y = 2;
-		r.LowerRightCorner.Y = RelativeRect.getHeight() - 2;
-		ListButton->setRelativePosition(r);
-
-		r.UpperLeftCorner.X = 2;
-		r.UpperLeftCorner.Y = 2;
-		r.LowerRightCorner.X = RelativeRect.getWidth() - (width + 2);
-		r.LowerRightCorner.Y = RelativeRect.getHeight() - 2;
-		SelectedText->setRelativePosition(r);
-	}
-}
 
 //! draws the element and its children
 void CGUIComboBox::draw()
@@ -389,18 +384,6 @@ void CGUIComboBox::draw()
 		return;
 
 	IGUISkin* skin = Environment->getSkin();
-
-	updateListButtonWidth(skin->getSize(EGDS_SCROLLBAR_SIZE));
-
-	// font changed while the listbox is open?
-	if ( ActiveFont != skin->getFont() && ListBox )
-	{
-		// close and re-open to use new font-size
-		openCloseMenu();
-		openCloseMenu();
-	}
-
-
 	IGUIElement *currentFocus = Environment->getFocus();
 	if (currentFocus != LastFocus)
 	{
@@ -458,9 +441,9 @@ void CGUIComboBox::openCloseMenu()
 		if (h == 0)
 			h = 1;
 
-		ActiveFont = skin->getFont();
-		if (ActiveFont)
-			h *= (ActiveFont->getDimension(L"A").Height + 4);
+		IGUIFont* font = skin->getFont();
+		if (font)
+			h *= (font->getDimension(L"A").Height + 4);
 
 		// open list box
 		core::rect<s32> r(0, AbsoluteRect.getHeight(),

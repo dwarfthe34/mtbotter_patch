@@ -324,10 +324,9 @@ bool CPLYMeshFileLoader::readVertex(const SPLYElement &Element, scene::CDynamicM
 			vert.Normal.Y = getFloat(t);
 			result=true;
 		}
-		 // there isn't a single convention for the UV, some software like Blender or Assimp uses "st" instead of "uv"
-		else if (Element.Properties[i].Name == "u" || Element.Properties[i].Name == "s")
+		else if (Element.Properties[i].Name == "u")
 			vert.TCoords.X = getFloat(t);
-		else if (Element.Properties[i].Name == "v" || Element.Properties[i].Name == "t")
+		else if (Element.Properties[i].Name == "v")
 			vert.TCoords.Y = getFloat(t);
 		else if (Element.Properties[i].Name == "red")
 		{
@@ -470,7 +469,7 @@ void CPLYMeshFileLoader::fillBuffer()
 	if (EndOfFile)
 		return;
 
-	size_t length = (size_t)(EndPointer - StartPointer);
+	u32 length = (u32)(EndPointer - StartPointer);
 	if (length && StartPointer != Buffer)
 	{
 		// copy the remaining data to the start of the buffer
@@ -487,7 +486,7 @@ void CPLYMeshFileLoader::fillBuffer()
 	else
 	{
 		// read data from the file
-		size_t count = File->read(EndPointer, PLY_INPUT_BUFFER_SIZE - length);
+		u32 count = File->read(EndPointer, PLY_INPUT_BUFFER_SIZE - length);
 
 		// increment the end pointer by the number of bytes read
 		EndPointer = EndPointer + count;

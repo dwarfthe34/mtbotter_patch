@@ -10,7 +10,6 @@ can easily be integrated into own apps.
 */
 
 #include <irrlicht.h>
-#include "exampleHelper.h"
 
 using namespace irr;
 using namespace core;
@@ -19,7 +18,7 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
-#ifdef _MSC_VER
+#ifdef _IRR_WINDOWS_
 #pragma comment(lib, "Irrlicht.lib")
 #endif
 
@@ -76,7 +75,8 @@ public:
 	/*
 	Load xml from disk, overwrite default settings
 	The xml we are trying to load has the following structure
-	settings nested in sections nested in the root node, like so
+	settings nested in sections nested in the root node, like:
+	\verbatim
 	<pre>
 		<?xml version="1.0"?>
 		<mygame>
@@ -87,6 +87,7 @@ public:
 			</video>
 		</mygame>
 	</pre>
+	\endverbatim
 	*/
 	bool load()
 	{
@@ -430,7 +431,7 @@ int main()
 	// Try to load config.
 	// I leave it as an exercise of the reader to store the configuration in the local application data folder,
 	// the only logical place to store config data for games. For all other operating systems I redirect to your manuals
-	app.Settings = new SettingManager(getExampleMediaPath() + "settings.xml");
+	app.Settings = new SettingManager("../../media/settings.xml");
 	if ( !app.Settings->load() )
 	{
 		// ...
@@ -490,7 +491,7 @@ int main()
 	{
 		if (app.Device->isWindowActive())
 		{
-			app.Driver->beginScene(video::ECBF_COLOR | video::ECBF_DEPTH, SColor(0,200,200,200));
+			app.Driver->beginScene(true, true, SColor(0,200,200,200));
 			app.Gui->drawAll();
 			app.Driver->endScene();
 		}

@@ -10,7 +10,6 @@ nearly all other tutorials.
 */
 #include <irrlicht.h>
 #include "driverChoice.h"
-#include "exampleHelper.h"
 
 using namespace irr;
 
@@ -39,7 +38,7 @@ public:
 
 		// set a nicer font
 		gui::IGUISkin* skin = env->getSkin();
-		gui::IGUIFont* font = env->getFont(getExampleMediaPath() + "fonthaettenschweiler.bmp");
+		gui::IGUIFont* font = env->getFont("../../media/fonthaettenschweiler.bmp");
 		if (font)
 			skin->setFont(font);
 
@@ -199,10 +198,8 @@ int main()
 
 	driver->setTextureCreationFlag(video::ETCF_ALWAYS_32_BIT, true);
 
-	const io::path mediaPath = getExampleMediaPath();
-
 	// add irrlicht logo
-	env->addImage(driver->getTexture(mediaPath + "irrlichtlogo3.png"),
+	env->addImage(driver->getTexture("../../media/irrlichtlogo3.png"),
 		core::position2d<s32>(10,10));
 
 	// add camera
@@ -231,14 +228,14 @@ int main()
 	IMeshManipulator::makePlanarTextureMapping() method.
 	*/
 
-	scene::IAnimatedMesh* roomMesh = smgr->getMesh(mediaPath + "room.3ds");
+	scene::IAnimatedMesh* roomMesh = smgr->getMesh("../../media/room.3ds");
 	scene::ISceneNode* room = 0;
 	scene::ISceneNode* earth = 0;
 
 	if (roomMesh)
 	{
-		// The room mesh doesn't have proper texture mapping on the
-		// floor, so we can recreate the mapping on runtime.
+		// The Room mesh doesn't have proper Texture Mapping on the
+		// floor, so we can recreate them on runtime
 		smgr->getMeshManipulator()->makePlanarTextureMapping(
 				roomMesh->getMesh(0), 0.003f);
 
@@ -259,14 +256,18 @@ int main()
 		*/
 
 		video::ITexture* normalMap =
-			driver->getTexture(mediaPath + "rockwall_height.bmp");
+			driver->getTexture("../../media/rockwall_height.bmp");
 
 		if (normalMap)
 			driver->makeNormalMapTexture(normalMap, 9.0f);
-
+/*
+		// The Normal Map and the displacement map/height map in the alpha channel
+		video::ITexture* normalMap =
+			driver->getTexture("../../media/rockwall_NRM.tga");
+*/
 		/*
 		But just setting color and normal map is not everything. The
-		material we want to use needs some additional information per
+		material we want to use needs some additional informations per
 		vertex like tangents and binormals. Because we are too lazy to
 		calculate that information now, we let Irrlicht do this for us.
 		That's why we call IMeshManipulator::createMeshWithTangents().
@@ -282,7 +283,7 @@ int main()
 
 		room = smgr->addMeshSceneNode(tangentMesh);
 		room->setMaterialTexture(0,
-				driver->getTexture(mediaPath + "rockwall.jpg"));
+				driver->getTexture("../../media/rockwall.jpg"));
 		room->setMaterialTexture(1, normalMap);
 
 		// Stones don't glitter..
@@ -310,13 +311,13 @@ int main()
 
 	// add earth sphere
 
-	scene::IAnimatedMesh* earthMesh = smgr->getMesh(mediaPath + "earth.x");
+	scene::IAnimatedMesh* earthMesh = smgr->getMesh("../../media/earth.x");
 	if (earthMesh)
 	{
-		//perform various tasks with the mesh manipulator
+		//perform various task with the mesh manipulator
 		scene::IMeshManipulator *manipulator = smgr->getMeshManipulator();
 
-		// create mesh copy with tangent information from original earth.x mesh
+		// create mesh copy with tangent informations from original earth.x mesh
 		scene::IMesh* tangentSphereMesh =
 			manipulator->createMeshWithTangents(earthMesh->getMesh(0));
 
@@ -333,7 +334,7 @@ int main()
 		earth->setPosition(core::vector3df(-70,130,45));
 
 		// load heightmap, create normal map from it and set it
-		video::ITexture* earthNormalMap = driver->getTexture(mediaPath + "earthbump.jpg");
+		video::ITexture* earthNormalMap = driver->getTexture("../../media/earthbump.jpg");
 		if (earthNormalMap)
 		{
 			driver->makeNormalMapTexture(earthNormalMap, 20.0f);
@@ -367,6 +368,9 @@ int main()
 		smgr->addLightSceneNode(0, core::vector3df(0,0,0),
 		video::SColorf(0.5f, 1.0f, 0.5f, 0.0f), 800.0f);
 
+	light1->setDebugDataVisible ( scene::EDS_BBOX );
+
+
 	// add fly circle animator to light 1
 	scene::ISceneNodeAnimator* anim =
 		smgr->createFlyCircleAnimator (core::vector3df(50,300,0),190.0f, -0.003f);
@@ -380,14 +384,14 @@ int main()
 	bill->setMaterialFlag(video::EMF_LIGHTING, false);
 	bill->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
 	bill->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
-	bill->setMaterialTexture(0, driver->getTexture(mediaPath + "particlegreen.jpg"));
+	bill->setMaterialTexture(0, driver->getTexture("../../media/particlegreen.jpg"));
 
 	/*
 	Now the same again, with the second light. The difference is that we
 	add a particle system to it too. And because the light moves, the
-	particles of the particle system will follow. If you want to know more
+	particles of the particlesystem will follow. If you want to know more
 	about how particle systems are created in Irrlicht, take a look at the
-	SpecialFX example. Maybe you will have noticed that we only add 2
+	specialFx example. Maybe you will have noticed that we only add 2
 	lights, this has a simple reason: The low end version of this material
 	was written in ps1.1 and vs1.1, which doesn't allow more lights. You
 	could add a third light to the scene, but it won't be used to shade the
@@ -411,7 +415,7 @@ int main()
 	bill->setMaterialFlag(video::EMF_LIGHTING, false);
 	bill->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
 	bill->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
-	bill->setMaterialTexture(0, driver->getTexture(mediaPath + "particlered.bmp"));
+	bill->setMaterialTexture(0, driver->getTexture("../../media/particlered.bmp"));
 
 	// add particle system
 	scene::IParticleSystemSceneNode* ps =
@@ -438,7 +442,7 @@ int main()
 	// adjust some material settings
 	ps->setMaterialFlag(video::EMF_LIGHTING, false);
 	ps->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
-	ps->setMaterialTexture(0, driver->getTexture(mediaPath + "fireball.bmp"));
+	ps->setMaterialTexture(0, driver->getTexture("../../media/fireball.bmp"));
 	ps->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
 
 	MyEventReceiver receiver(room, earth, env, driver);
@@ -453,7 +457,7 @@ int main()
 	while(device->run())
 	if (device->isWindowActive())
 	{
-		driver->beginScene(video::ECBF_COLOR | video::ECBF_DEPTH, video::SColor(0));
+		driver->beginScene(true, true, 0);
 
 		smgr->drawAll();
 		env->drawAll();

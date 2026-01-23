@@ -3,8 +3,6 @@
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 // Code for this scene node has been contributed by Anders la Cour-Harbo (alc)
 
-#include "IrrCompileConfig.h"
-#ifdef _IRR_COMPILE_WITH_SKYDOME_SCENENODE_
 #include "CSkyDomeSceneNode.h"
 #include "IVideoDriver.h"
 #include "ISceneManager.h"
@@ -48,7 +46,7 @@ CSkyDomeSceneNode::CSkyDomeSceneNode(video::ITexture* sky, u32 horiRes, u32 vert
 
 	Buffer = new SMeshBuffer();
 	Buffer->Material.Lighting = false;
-	Buffer->Material.ZBuffer = video::ECFN_DISABLED;
+	Buffer->Material.ZBuffer = video::ECFN_NEVER;
 	Buffer->Material.ZWriteEnable = false;
 	Buffer->Material.AntiAliasing = video::EAAM_OFF;
 	Buffer->Material.setTexture(0, sky);
@@ -264,5 +262,3 @@ ISceneNode* CSkyDomeSceneNode::clone(ISceneNode* newParent, ISceneManager* newMa
 
 } // namespace scene
 } // namespace irr
-
-#endif // _IRR_COMPILE_WITH_SKYDOME_SCENENODE_

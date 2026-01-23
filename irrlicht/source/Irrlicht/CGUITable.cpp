@@ -26,15 +26,13 @@ namespace gui
 CGUITable::CGUITable(IGUIEnvironment* environment, IGUIElement* parent,
 						s32 id, const core::rect<s32>& rectangle, bool clip,
 						bool drawBack, bool moveOverSelect)
-: IGUITable(environment, parent, id, rectangle),
+: IGUITable(environment, parent, id, rectangle), Font(0),
 	VerticalScrollBar(0), HorizontalScrollBar(0),
 	Clip(clip), DrawBack(drawBack), MoveOverSelect(moveOverSelect),
 	Selecting(false), CurrentResizedColumn(-1), ResizeStart(0), ResizableColumns(true),
 	ItemHeight(0), TotalItemHeight(0), TotalItemWidth(0), Selected(-1),
 	CellHeightPadding(2), CellWidthPadding(5), ActiveTab(-1),
-	CurrentOrdering(EGOM_NONE), DrawFlags(EGTDF_ROWS | EGTDF_COLUMNS | EGTDF_ACTIVE_ROW ),
-	ScrollBarSize(0),
-	OverrideFont(0)
+	CurrentOrdering(EGOM_NONE), DrawFlags(EGTDF_ROWS | EGTDF_COLUMNS | EGTDF_ACTIVE_ROW )
 {
 	#ifdef _DEBUG
 	setDebugName("CGUITable");
@@ -68,8 +66,8 @@ CGUITable::~CGUITable()
 	if ( HorizontalScrollBar )
 		HorizontalScrollBar->drop();
 
-	if (OverrideFont)
-		OverrideFont->drop();
+	if (Font)
+		Font->drop();
 }
 
 
@@ -77,7 +75,7 @@ void CGUITable::addColumn(const wchar_t* caption, s32 columnIndex)
 {
 	Column tabHeader;
 	tabHeader.Name = caption;
-	tabHeader.Width = getActiveFont()->getDimension(caption).Width + (CellWidthPadding * 2) + ARROW_PAD;
+	tabHeader.Width = Font->getDimension(caption).Width + (CellWidthPadding * 2) + ARROW_PAD;
 	tabHeader.OrderingMode = EGCO_NONE;
 
 	if ( columnIndex < 0 || columnIndex >= (s32)Columns.size() )
@@ -99,7 +97,7 @@ void CGUITable::addColumn(const wchar_t* caption, s32 columnIndex)
 		}
 	}
 
-	if (ActiveTab == -1 && Columns.size() == 1)	// first column added - make it active automatically
+	if (ActiveTab == -1)
 		ActiveTab = 0;
 
 	recalculateWidths();
@@ -138,10 +136,11 @@ s32 CGUITable::getRowCount() const
 
 bool CGUITable::setActiveColumn(s32 idx, bool doOrder )
 {
-	if ( idx >= (s32)Columns.size() )
-		idx = -1;
+	if (idx < 0 || idx >= (s32)Columns.size())
+		return false;
 
 	bool changed = (ActiveTab != idx);
+
 	ActiveTab = idx;
 	if ( ActiveTab < 0 )
 		return false;
@@ -216,7 +215,7 @@ void CGUITable::setColumnWidth(u32 columnIndex, u32 width)
 {
 	if ( columnIndex < Columns.size() )
 	{
-		const u32 MIN_WIDTH = getActiveFont()->getDimension(Columns[columnIndex].Name.c_str() ).Width + (CellWidthPadding * 2);
+		const u32 MIN_WIDTH = Font->getDimension(Columns[columnIndex].Name.c_str() ).Width + (CellWidthPadding * 2);
 		if ( width < MIN_WIDTH )
 			width = MIN_WIDTH;
 
@@ -393,7 +392,7 @@ s32 CGUITable::getSelected() const
 	return Selected;
 }
 
-//! set which row is currently selected
+//! set wich row is currently selected
 void CGUITable::setSelected( s32 index )
 {
 	Selected = -1;
@@ -415,17 +414,24 @@ void CGUITable::recalculateWidths()
 
 void CGUITable::recalculateHeights()
 {
-	IGUIFont* activeFont = getActiveFont();
-	if(activeFont)
+	TotalItemHeight = 0;
+	IGUISkin* skin = Environment->getSkin();
+	if (Font != skin->getFont())
 	{
-		ItemHeight = activeFont->getDimension(L"A").Height + (CellHeightPadding * 2);
-		TotalItemHeight = ItemHeight * Rows.size();		//  header is not counted, because we only want items
-	}
-	else
-	{
+		if (Font)
+			Font->drop();
+
+		Font = skin->getFont();
+
 		ItemHeight = 0;
-		TotalItemHeight = 0;
+
+		if(Font)
+		{
+			ItemHeight = Font->getDimension(L"A").Height + (CellHeightPadding * 2);
+			Font->grab();
+		}
 	}
+	TotalItemHeight = ItemHeight * Rows.size();		//  header is not counted, because we only want items
 	checkScrollbars();
 }
 
@@ -437,8 +443,7 @@ void CGUITable::checkScrollbars()
 	if ( !HorizontalScrollBar || !VerticalScrollBar || !skin)
 		return;
 
-	ScrollBarSize = skin->getSize(EGDS_SCROLLBAR_SIZE);
-
+	s32 scrollBarSize = skin->getSize(EGDS_SCROLLBAR_SIZE);
 	bool wasHorizontalScrollBarVisible = HorizontalScrollBar->isVisible();
 	bool wasVerticalScrollBarVisible = VerticalScrollBar->isVisible();
 	HorizontalScrollBar->setVisible(false);
@@ -458,7 +463,7 @@ void CGUITable::checkScrollbars()
 	// needs horizontal scroll be visible?
 	if( TotalItemWidth > clientClip.getWidth() )
 	{
-		clientClip.LowerRightCorner.Y -= ScrollBarSize;
+		clientClip.LowerRightCorner.Y -= scrollBarSize;
 		HorizontalScrollBar->setVisible(true);
 		HorizontalScrollBar->setMax(core::max_(0,TotalItemWidth - clientClip.getWidth()));
 	}
@@ -466,7 +471,7 @@ void CGUITable::checkScrollbars()
 	// needs vertical scroll be visible?
 	if( TotalItemHeight > clientClip.getHeight() )
 	{
-		clientClip.LowerRightCorner.X -= ScrollBarSize;
+		clientClip.LowerRightCorner.X -= scrollBarSize;
 		VerticalScrollBar->setVisible(true);
 		VerticalScrollBar->setMax(core::max_(0,TotalItemHeight - clientClip.getHeight()));
 
@@ -475,7 +480,7 @@ void CGUITable::checkScrollbars()
 		{
 			if( TotalItemWidth > clientClip.getWidth() )
 			{
-				clientClip.LowerRightCorner.Y -= ScrollBarSize;
+				clientClip.LowerRightCorner.Y -= scrollBarSize;
 				HorizontalScrollBar->setVisible(true);
 				HorizontalScrollBar->setMax(core::max_(0,TotalItemWidth - clientClip.getWidth()));
 			}
@@ -491,13 +496,13 @@ void CGUITable::checkScrollbars()
 		if ( HorizontalScrollBar->isVisible() )
 		{
 			VerticalScrollBar->setRelativePosition(
-				core::rect<s32>(RelativeRect.getWidth() - ScrollBarSize, 1,
-				RelativeRect.getWidth()-1, RelativeRect.getHeight()-(1+ScrollBarSize) ) );
+				core::rect<s32>(RelativeRect.getWidth() - scrollBarSize, 1,
+				RelativeRect.getWidth()-1, RelativeRect.getHeight()-(1+scrollBarSize) ) );
 		}
 		else
 		{
 			VerticalScrollBar->setRelativePosition(
-				core::rect<s32>(RelativeRect.getWidth() - ScrollBarSize, 1,
+				core::rect<s32>(RelativeRect.getWidth() - scrollBarSize, 1,
 				RelativeRect.getWidth()-1, RelativeRect.getHeight()-1) );
 		}
 	}
@@ -510,11 +515,11 @@ void CGUITable::checkScrollbars()
 
 		if ( VerticalScrollBar->isVisible() )
 		{
-			HorizontalScrollBar->setRelativePosition( core::rect<s32>(1, RelativeRect.getHeight() - ScrollBarSize, RelativeRect.getWidth()-(1+ScrollBarSize), RelativeRect.getHeight()-1) );
+			HorizontalScrollBar->setRelativePosition( core::rect<s32>(1, RelativeRect.getHeight() - scrollBarSize, RelativeRect.getWidth()-(1+scrollBarSize), RelativeRect.getHeight()-1) );
 		}
 		else
 		{
-			HorizontalScrollBar->setRelativePosition( core::rect<s32>(1, RelativeRect.getHeight() - ScrollBarSize, RelativeRect.getWidth()-1, RelativeRect.getHeight()-1) );
+			HorizontalScrollBar->setRelativePosition( core::rect<s32>(1, RelativeRect.getHeight() - scrollBarSize, RelativeRect.getWidth()-1, RelativeRect.getHeight()-1) );
 		}
 	}
 }
@@ -583,18 +588,21 @@ bool CGUITable::OnEvent(const SEvent &event)
 
 				case EMIE_LMOUSE_PRESSED_DOWN:
 
-					if (VerticalScrollBar->isVisible() &&
+					if (Environment->hasFocus(this) &&
+						VerticalScrollBar->isVisible() &&
 						VerticalScrollBar->getAbsolutePosition().isPointInside(p) &&
 						VerticalScrollBar->OnEvent(event))
 						return true;
 
-					if (HorizontalScrollBar->isVisible() &&
+					if (Environment->hasFocus(this) &&
+						HorizontalScrollBar->isVisible() &&
 						HorizontalScrollBar->getAbsolutePosition().isPointInside(p) &&
 						HorizontalScrollBar->OnEvent(event))
 						return true;
 
 					if ( dragColumnStart( event.MouseInput.X, event.MouseInput.Y ) )
 					{
+						Environment->setFocus(this);
 						return true;
 					}
 
@@ -602,21 +610,28 @@ bool CGUITable::OnEvent(const SEvent &event)
 						return true;
 
 					Selecting = true;
+					Environment->setFocus(this);
 					return true;
 
 				case EMIE_LMOUSE_LEFT_UP:
 
 					CurrentResizedColumn = -1;
 					Selecting = false;
+					if (!getAbsolutePosition().isPointInside(p))
+					{
+						Environment->removeFocus(this);
+					}
 
-					if (VerticalScrollBar->isVisible() &&
+					if (Environment->hasFocus(this) &&
+						VerticalScrollBar->isVisible() &&
 						VerticalScrollBar->getAbsolutePosition().isPointInside(p) &&
 						VerticalScrollBar->OnEvent(event))
 					{
 						return true;
 					}
 
-					if (HorizontalScrollBar->isVisible() &&
+					if (Environment->hasFocus(this) &&
+						HorizontalScrollBar->isVisible() &&
 						HorizontalScrollBar->getAbsolutePosition().isPointInside(p) &&
 						HorizontalScrollBar->OnEvent(event))
 					{
@@ -862,12 +877,9 @@ void CGUITable::draw()
 	if (!skin)
 		return;
 
-	IGUIFont* font = getActiveFont();
+	IGUIFont* font = skin->getFont();
 	if (!font)
 		return;
-
-	if ( ScrollBarSize != skin->getSize(EGDS_SCROLLBAR_SIZE) )
-		checkScrollbars();
 
 	// CAREFUL: near identical calculations for tableRect and clientClip are also done in checkScrollbars and selectColumnHeader
 	// Area of table used for drawing without scrollbars
@@ -875,9 +887,9 @@ void CGUITable::draw()
 	tableRect.UpperLeftCorner.X += 1;
 	tableRect.UpperLeftCorner.Y += 1;
 	if ( VerticalScrollBar && VerticalScrollBar->isVisible() )
-		tableRect.LowerRightCorner.X -= ScrollBarSize;
+		tableRect.LowerRightCorner.X -= skin->getSize(EGDS_SCROLLBAR_SIZE);
 	if ( HorizontalScrollBar && HorizontalScrollBar->isVisible() )
-		tableRect.LowerRightCorner.Y -= ScrollBarSize;
+		tableRect.LowerRightCorner.Y -= skin->getSize(EGDS_SCROLLBAR_SIZE);
 
 	s32 headerBottom = tableRect.UpperLeftCorner.Y + ItemHeight;
 
@@ -915,7 +927,7 @@ void CGUITable::draw()
 		if (rowRect.LowerRightCorner.Y >= AbsoluteRect.UpperLeftCorner.Y &&
 			rowRect.UpperLeftCorner.Y <= AbsoluteRect.LowerRightCorner.Y)
 		{
-			// draw row separator
+			// draw row seperator
 			if ( DrawFlags & EGTDF_ROWS )
 			{
 				core::rect<s32> lineRect(rowRect);
@@ -966,12 +978,14 @@ void CGUITable::draw()
 		const wchar_t* text = Columns[i].Name.c_str();
 		u32 colWidth = Columns[i].Width;
 
+		//core::dimension2d<s32 > dim = font->getDimension(text);
+
 		core::rect<s32> columnrect(pos, tableRect.UpperLeftCorner.Y, pos + colWidth, headerBottom);
 
 		// draw column background
 		skin->draw3DButtonPaneStandard(this, columnrect, &tableClip);
 
-		// draw column separator
+		// draw column seperator
 		if ( DrawFlags & EGTDF_COLUMNS )
 		{
 			columnSeparator.UpperLeftCorner.X = pos;
@@ -1018,7 +1032,10 @@ void CGUITable::breakText(const core::stringw& text, core::stringw& brokenText, 
 	if (!skin)
 		return;
 
-	IGUIFont* font = getActiveFont();
+	if (!Font)
+		return;
+
+	IGUIFont* font = skin->getFont();
 	if (!font)
 		return;
 
@@ -1070,70 +1087,6 @@ s32 CGUITable::getDrawFlags() const
 	return DrawFlags;
 }
 
-//! Sets another skin independent font.
-void CGUITable::setOverrideFont(IGUIFont* font)
-{
-	if (OverrideFont == font)
-		return;
-
-	if (OverrideFont)
-		OverrideFont->drop();
-
-	OverrideFont = font;
-
-	if (OverrideFont)
-		OverrideFont->grab();
-
-	refreshControls();
-}
-
-//! Gets the override font (if any)
-IGUIFont * CGUITable::getOverrideFont() const
-{
-	return OverrideFont;
-}
-
-//! Get the font which is used right now for drawing
-IGUIFont* CGUITable::getActiveFont() const
-{
-	if ( OverrideFont )
-		return OverrideFont;
-	IGUISkin* skin = Environment->getSkin();
-	if (skin)
-		return skin->getFont();
-	return 0;
-}
-
-//! Get the height of items/rows
-s32 CGUITable::getItemHeight() const
-{
-	return ItemHeight;
-}
-
-//! Access the vertical scrollbar
-IGUIScrollBar* CGUITable::getVerticalScrollBar() const
-{
-	return VerticalScrollBar;
-}
-
-//! Access the horizontal scrollbar
-IGUIScrollBar* CGUITable::getHorizontalScrollBar() const
-{
-	return HorizontalScrollBar;
-}
-
-//! Sets whether to draw the background.
-void CGUITable::setDrawBackground(bool draw)
-{
-	DrawBack = draw;
-}
-
-//! Checks if background drawing is enabled
-/** \return true if background drawing is enabled, false otherwise */
-bool CGUITable::isDrawBackgroundEnabled() const
-{
-	return DrawBack;
-}
 
 //! Writes attributes of the element.
 void CGUITable::serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options) const
@@ -1182,7 +1135,7 @@ void CGUITable::serializeAttributes(io::IAttributes* out, io::SAttributeReadWrit
 	// s32 ItemHeight;	// can be calculated
 	// TotalItemHeight	// calculated
 	// TotalItemWidth	// calculated
-	// gui::IGUIFont* ActiveFont; // TODO: we don't have a sane font-serialization so far
+	// gui::IGUIFont* Font; // font is just the current font from environment
 	// gui::IGUIScrollBar* VerticalScrollBar;		// not serialized
 	// gui::IGUIScrollBar* HorizontalScrollBar;		// not serialized
 
@@ -1269,22 +1222,29 @@ void CGUITable::deserializeAttributes(io::IAttributes* in, io::SAttributeReadWri
 	TotalItemHeight = 0;	// calculated
 	TotalItemWidth = 0;	// calculated
 
-	Clip = in->getAttributeAsBool("Clip", Clip);
-	DrawBack = in->getAttributeAsBool("DrawBack", DrawBack);
-	MoveOverSelect = in->getAttributeAsBool("MoveOverSelect", MoveOverSelect);
+	// force font recalculation
+	if ( Font )
+	{
+		Font->drop();
+		Font = 0;
+	}
+
+	Clip = in->getAttributeAsBool("Clip");
+	DrawBack = in->getAttributeAsBool("DrawBack");
+	MoveOverSelect = in->getAttributeAsBool("MoveOverSelect");
 
 	CurrentResizedColumn = -1;
 	ResizeStart = 0;
-	ResizableColumns = in->getAttributeAsBool("ResizableColumns", ResizableColumns);
+	ResizableColumns = in->getAttributeAsBool("ResizableColumns");
 
 	Selected = -1;
-	CellWidthPadding = in->getAttributeAsInt("CellWidthPadding", CellWidthPadding);
-	CellHeightPadding = in->getAttributeAsInt("CellHeightPadding", CellHeightPadding);
+	CellWidthPadding = in->getAttributeAsInt("CellWidthPadding");
+	CellHeightPadding = in->getAttributeAsInt("CellHeightPadding");
 	ActiveTab = -1;
 	Selecting = false;
 
-	CurrentOrdering = (EGUI_ORDERING_MODE) in->getAttributeAsEnumeration("CurrentOrdering", GUIOrderingModeNames, (s32)CurrentOrdering);
-	DrawFlags = in->getAttributeAsInt("DrawFlags", DrawFlags);
+	CurrentOrdering = (EGUI_ORDERING_MODE) in->getAttributeAsEnumeration("CurrentOrdering", GUIOrderingModeNames);
+	DrawFlags = in->getAttributeAsInt("DrawFlags");
 
 	refreshControls();
 }

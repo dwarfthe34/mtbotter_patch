@@ -14,10 +14,10 @@
 #define STATIC_LOCALEDIR "share/locale"
 #define BUILD_TYPE "Release"
 #define ICON_DIR ""
-#define RUN_IN_PLACE 0
+#define RUN_IN_PLACE 1
 #define USE_GETTEXT 1
 #define USE_CURL 1
-#define USE_SOUND 1
+#define USE_SOUND 0
 #define USE_FREETYPE 1
 #define USE_CURSES 1
 #define USE_LEVELDB 0

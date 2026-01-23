@@ -7,11 +7,7 @@
 #include "ISceneManager.h"
 #include "S3DVertex.h"
 #include "os.h"
-#ifdef _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 #include "CShadowVolumeSceneNode.h"
-#else
-#include "IShadowVolumeSceneNode.h"
-#endif // _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 #include "IAnimatedMeshMD3.h"
 #include "CSkinnedMesh.h"
 #include "IDummyTransformationSceneNode.h"
@@ -98,7 +94,7 @@ void CAnimatedMeshSceneNode::buildFrameNr(u32 timeMs)
 		}
 	}
 
-	if (StartFrame==EndFrame)
+	if ((StartFrame==EndFrame))
 	{
 		CurrentFrameNr = (f32)StartFrame; //Support for non animated meshes
 	}
@@ -168,7 +164,7 @@ void CAnimatedMeshSceneNode::OnRegisterSceneNode()
 			video::IMaterialRenderer* rnd =
 				driver->getMaterialRenderer(Materials[i].MaterialType);
 
-			if ((rnd && rnd->isTransparent()) || Materials[i].isTransparent())
+			if (rnd && rnd->isTransparent())
 				++transparentCount;
 			else
 				++solidCount;
@@ -368,17 +364,11 @@ void CAnimatedMeshSceneNode::render()
 			// draw normals
 			for (u32 g=0; g < count; ++g)
 			{
-				scene::IMeshBuffer* mb = m->getMeshBuffer(g);
-				if (RenderFromIdentity)
-					driver->setTransform(video::ETS_WORLD, core::IdentityMatrix );
-				else if (Mesh->getMeshType() == EAMT_SKINNED)
-					driver->setTransform(video::ETS_WORLD, AbsoluteTransformation * ((SSkinMeshBuffer*)mb)->Transformation);
-
-				driver->drawMeshBufferNormals(mb, debugNormalLength, debugNormalColor);
+				driver->drawMeshBufferNormals(m->getMeshBuffer(g), debugNormalLength, debugNormalColor);
 			}
 		}
 
-		debug_mat.ZBuffer = video::ECFN_DISABLED;
+		debug_mat.ZBuffer = video::ECFN_NEVER;
 		debug_mat.Lighting = false;
 		driver->setMaterial(debug_mat);
 
@@ -458,7 +448,7 @@ void CAnimatedMeshSceneNode::render()
 		{
 			debug_mat.Lighting = false;
 			debug_mat.Wireframe = true;
-			debug_mat.ZBuffer = video::ECFN_DISABLED;
+			debug_mat.ZBuffer = video::ECFN_NEVER;
 			driver->setMaterial(debug_mat);
 
 			for (u32 g=0; g<m->getMeshBufferCount(); ++g)
@@ -560,7 +550,6 @@ u32 CAnimatedMeshSceneNode::getMaterialCount() const
 IShadowVolumeSceneNode* CAnimatedMeshSceneNode::addShadowVolumeSceneNode(
 		const IMesh* shadowMesh, s32 id, bool zfailmethod, f32 infinity)
 {
-#ifdef _IRR_COMPILE_WITH_SHADOW_VOLUME_SCENENODE_
 	if (!SceneManager->getVideoDriver()->queryFeature(video::EVDF_STENCIL_BUFFER))
 		return 0;
 
@@ -572,9 +561,6 @@ IShadowVolumeSceneNode* CAnimatedMeshSceneNode::addShadowVolumeSceneNode(
 
 	Shadow = new CShadowVolumeSceneNode(shadowMesh, this, SceneManager, id,  zfailmethod, infinity);
 	return Shadow;
-#else
-	return 0;
-#endif
 }
 
 //! Returns a pointer to a child node, which has the same transformation as
@@ -659,6 +645,21 @@ u32 CAnimatedMeshSceneNode::getJointCount() const
 #endif
 }
 
+
+//! Returns a pointer to a child node, which has the same transformation as
+//! the corresponding joint, if the mesh in this scene node is a ms3d mesh.
+ISceneNode* CAnimatedMeshSceneNode::getMS3DJointNode(const c8* jointName)
+{
+	return  getJointNode(jointName);
+}
+
+
+//! Returns a pointer to a child node, which has the same transformation as
+//! the corresponding joint, if the mesh in this scene node is a .x mesh.
+ISceneNode* CAnimatedMeshSceneNode::getXJointNode(const c8* jointName)
+{
+	return  getJointNode(jointName);
+}
 
 //! Removes a child from this scene node.
 //! Implemented here, to be able to remove the shadow properly, if there is one,
@@ -863,8 +864,8 @@ void CAnimatedMeshSceneNode::setMesh(IAnimatedMesh* mesh)
 	}
 
 	// get start and begin time
-	setAnimationSpeed(Mesh->getAnimationSpeed());	// NOTE: This had been commented out (but not removed!) in r3526. Which caused meshloader-values for speed to be ignored unless users specified explicitly. Missing a test-case where this could go wrong so I put the code back in.
-	setFrameLoop(0, Mesh->getFrameCount()-1);
+//	setAnimationSpeed(Mesh->getAnimationSpeed());
+	setFrameLoop(0, Mesh->getFrameCount());
 }
 
 

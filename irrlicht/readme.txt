@@ -1,8 +1,8 @@
 ==========================================================================
-The Irrlicht Engine SDK version 1.9
+The Irrlicht Engine SDK version 1.8.5
 ==========================================================================
 
-  Welcome to the Irrlicht Engine SDK.
+  Welcome the Irrlicht Engine SDK.
 
   Content of this file:
 
@@ -129,7 +129,7 @@ The Irrlicht Engine SDK version 1.9
   The Irrlicht Engine License
   ===========================
 
-  Copyright (C) 2002-2012 Nikolaus Gebhardt
+  Copyright (C) 2002-2015 Nikolaus Gebhardt
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -169,12 +169,14 @@ The Irrlicht Engine SDK version 1.9
   by other people. Especially: (There are probably more people, sorry if I forgot one.
   See http://irrlicht.sourceforge.net/author.html for more informations)
 
-  Christian Stehno (hybrid)   Contribution Coordinator/Developer
-  Michael Zeilfelder (cutealien) Developer
-  Patryk Nadrowski (Nadro)    Developer  
+  Michael Zeilfelder (cutealien) Developer/Maintainer
+  Thomas Alten (burningwater)  Wrote the burningsvideo software rasterizer  
   Yoran Bosman (Yoran)        Webserver administrator
+  
+  Former developers:
+  Christian Stehno (hybrid)   Founder
+  Patryk Nadrowski (Nadro)    Developer  
   Gareth Davidson (bitplane)  Developer/ Forum admin
-  Thomas Alten (burningwater) Wrote the burningsvideo software rasterizer
   Luke P. Hoschke (luke)      Wrote the b3d loader, the new animation system, VBOs and other things
   Colin MacDonald (rogerborg) All hands person
   Ahmed Hilali (blindside)    The shader and advanced effects man

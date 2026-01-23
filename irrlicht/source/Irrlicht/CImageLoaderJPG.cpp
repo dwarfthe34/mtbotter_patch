@@ -68,7 +68,7 @@ void CImageLoaderJPG::init_source (j_decompress_ptr cinfo)
 boolean CImageLoaderJPG::fill_input_buffer (j_decompress_ptr cinfo)
 {
 	// DO NOTHING
-	return TRUE;
+	return 1;
 }
 
 
@@ -128,7 +128,7 @@ bool CImageLoaderJPG::isALoadableFileFormat(io::IReadFile* file) const
 	if (!(file && file->seek(0)))
 		return false;
 	unsigned char header[3];
-	size_t headerLen = file->read(header, sizeof(header));
+	int headerLen = file->read(header, sizeof(header));
 	return headerLen >= 3 && !memcmp(header, "\xFF\xD8\xFF", 3);
 	#endif
 }
@@ -174,7 +174,9 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 		jpeg_destroy_decompress(&cinfo);
 
 		delete [] input;
-		delete [] rowPtr;
+		// if the row pointer was created, we delete it.
+		if (rowPtr)
+			delete [] rowPtr;
 
 		// return null pointer
 		return 0;
@@ -260,7 +262,7 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 		image = new CImage(ECF_R8G8B8,
 				core::dimension2d<u32>(width, height));
 		const u32 size = 3*width*height;
-		u8* data = (u8*)image->getData();
+		u8* data = (u8*)image->lock();
 		if (data)
 		{
 			for (u32 i=0,j=0; i<size; i+=3, j+=4)
@@ -274,6 +276,7 @@ IImage* CImageLoaderJPG::loadImage(io::IReadFile* file) const
 				data[i+2] = (char)(output[j+0]*(output[j+3]/255.f));
 			}
 		}
+		image->unlock();
 		delete [] output;
 	}
 	else
