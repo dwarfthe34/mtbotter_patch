@@ -1,5 +1,5 @@
 cd irrlicht/source/Irrlicht
-cmake . -DBUILD_SHARED_LIBS=ON -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
+#cmake . -DBUILD_SHARED_LIBS=ON -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
 make -j$(nproc)
 cd ..
 cd ..
