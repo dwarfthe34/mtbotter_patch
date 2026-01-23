@@ -10,7 +10,7 @@ Roughly 9.9% of this repository's credit goes to Farooqkz the creator of MtBotte
 And I take the remaining 0.1% of credit for patching this bot library.
 
 To code a bot in C++(if you want to code your bot in other languages, see Other
-languages section), see CREATE-BOT.md
+languages section), see CREATE-BOT.md.
 
 ## Other languages
 
