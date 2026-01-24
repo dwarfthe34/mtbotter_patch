@@ -25,7 +25,7 @@ If you do not want to execute those commands you can go into "irrlicht/source/Ir
 I haven't tested compiling it on other Operating Systems such as Windows or Mac OS X
 but it should work.
 ## Run the bot
-From my testing the best method of running you bot is stated here 
+From my testing the best method of running your bot is stated here 
 ``` 
 g++ -std=c++17 \
     -I./src \
