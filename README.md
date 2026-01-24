@@ -20,7 +20,7 @@ At the moment you need to code in C++ for bots in the near future I will change 
 
 To build MtBotter run the following:
 ```chmod +x build.sh ``` then do ```sudo bash build.sh ``` those command will compile Irrlicht to help patch a bug it had, and it will also build MtBotter.
-If you do not want do those commands you can go into "irrlicht/source/Irrlicht" and run ```make -j$(nproc) ``` then go back into the MtBotter parent folder and run the following:
+If you do not want to execute those commands you can go into "irrlicht/source/Irrlicht" and run ```make -j$(nproc) ``` then go back into the MtBotter parent folder and run the following:
 ```cmake . -DRUN_IN_PLACE=TRUE -DENABLE_SOUND=0 ``` then do the make command again. The build.sh file is to automate that process.
 I haven't tested compiling it on other Operating Systems such as Windows or Mac OS X
 but it should work.
