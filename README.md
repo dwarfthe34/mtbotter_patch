@@ -5,7 +5,7 @@ the world, add or remove blocks, punch nodes, mobs and players and receive curre
 few events such as removal or addition of a node, chat messages and time change.
 
 About 80-90 % of the credit of this project goes to celeron55
-and other authors and contributors of Minetest(engine). And to the creators of Irrlicht
+and other authors and contributors of Minetest(engine). And to the creators of Irrlicht.
 Roughly 9.9% of this repository's credit goes to Farooqkz the creator of MtBotter.
 And I take the remaining 0.1% of credit for patching this bot library.
 
