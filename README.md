@@ -23,7 +23,7 @@ To build MtBotter run the following:
 If you do not want to execute those commands you can go into "irrlicht/source/Irrlicht" and run ```sudo make -j$(nproc) ``` then go back into the MtBotter parent folder and run the following:
 ```cmake . -DRUN_IN_PLACE=TRUE -DENABLE_SOUND=0 ``` then do the make command again. The build.sh file is to automate that process.
 I haven't tested compiling it on other Operating Systems such as Windows or Mac OS X
-but it should work. Also yes i know adding ```sudo``` is needed i don't really understand but it all of a sudden didn't compile without ```sudo``` before ```make```.
+but it should work. Also yes I know adding ```sudo``` is needed I don't really understand but it all of a sudden didn't compile without ```sudo``` before ```make```.
 ## Run the bot
 From my testing the best method of running your bot is stated here 
 ``` 
