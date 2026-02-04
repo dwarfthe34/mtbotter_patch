@@ -1,5 +1,5 @@
 # MtBotter
-
+# ***IF YOU WANT TO COMMIT TO THIS PROJECT PLEASE DO SO.***
 mtbotter is a library for creating simple or complex Minetest bots. You can move in
 the world, add or remove blocks, punch nodes, mobs and players and receive currently a
 few events such as removal or addition of a node, chat messages and time change.
