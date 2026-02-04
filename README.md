@@ -72,5 +72,6 @@ MtBotter is under the same licence(LGPL 2.1+).
 For more information see LICENSE in project's root directory.
 ## Notes
 
-This bot will strictly only connect to servers with a fully number IP address, I am working on patching that bug and it should be the seond to last one. There is also a bug so MtBotter cannot connect to servers that you are not running on your 
-**own machine** I am working on this fast. 
+This bot will strictly only connect to servers with a fully number IP address, I am working on patching that bug and it should be the seond to last one. There is also a bug so MtBotter cannot connect to servers that have a firewall because it spams packets I have no idea how to fix this. That all being said I have one more thing I need to say: 
+# ***IF YOU WANT TO COMMIT TO THIS PROJECT PLEASE DO SO.***
+Since MtBotter is open-source you can commit to the project and help with the development of it.
