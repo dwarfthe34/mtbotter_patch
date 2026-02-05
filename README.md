@@ -17,9 +17,8 @@ At the moment you need to code in C++ for bots in the near future I will change 
 
 ## Build
 
-To build MtBotter run the following:
-Go into the MtBotter parent folder and run the following:
-```cmake . -DRUN_IN_PLACE=TRUE``` then do the make command again. Then run ```make -j$(nproc)```.
+To build it go into the MtBotter parent folder and run the commands listed:
+```cmake . -DRUN_IN_PLACE=TRUE``` then do ```make -j$(nproc)```.
 I haven't tested compiling it on other Operating Systems such as Windows or Mac OS X
 but it should work.
 ## Run the bot
